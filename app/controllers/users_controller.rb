@@ -4,19 +4,12 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  # def sign_up
-  #   binding.pry
-  #   @user = User.new
-  #   redirect_to 'landings/index'
-  # end
-
   def create
     @user = User.new(user_params)
 
     if @user.save
       redirect_to @user, notice: "You're in!"
     else
-      # render :new
       render action: 'sign_up'
     end
   end
