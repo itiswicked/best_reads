@@ -8,6 +8,23 @@
 </head>
 <body>
 
+<nav>
+  <ul>
+    <% if user_signed_in? %>
+      <%= link_to "Sign Out", '#' %>
+    <% else %>
+      <li><%= link_to "Sign In", '#' %>
+      <li><%= link_to "Sign Up", new_user_registration_path %></li>
+    <% end %>
+  </ul>
+</nav>
+<% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
+
 <%= yield %>
 
 </body>
