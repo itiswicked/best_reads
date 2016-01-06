@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+describe User do
   it { should have_valid(:first_name).when('Foo') }
   it { should_not have_valid(:first_name).when(nil, '') }
 
