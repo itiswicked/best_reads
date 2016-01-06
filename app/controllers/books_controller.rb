@@ -11,42 +11,40 @@ class BooksController < ApplicationController
   def new
     @book = Book.new
     @author = Author.new
-    @genres_collection = Genre.all.map do |genre|
-      [genre.genre_name, genre.id]
-    end
+    @genres_collection = genres_collection
   end
 
   def create
-    @book = Book.new(book_params )
-    @genres_collection = Genre.all.map do |genre|
-      [genre.genre_name, genre.id]
-    end
-
+    @book = Book.new(book_params)
+    @genres_collection = genres_collection
 
     @author = Author.find_or_create_by(name: author_params[:author])
     @book.author = @author
-    #@genre = Genre.find_by()
 
-      if @book.save
-        flash[:notice] = "Book added successfully"
-        redirect_to books_path, alert: "Book Added Successfully"
-      else
-        flash[:notice] = "Book not created"
-        render :new
-      end
-
+    if @book.save
+      flash[:notice] = "Book added successfully"
+      redirect_to books_path, alert: "Book Added Successfully"
+    else
+      flash[:notice] = "Book not created"
+      render :new
+    end
   end
 
   private
+
   def book_params
-    params.require(:book).permit(:title, :description, :year, :genre_id, :author_id)
+    params.require(:book).permit(:title,
+                                 :description,
+                                 :year,
+                                 :genre_id,
+                                 :author_id)
   end
 
   def author_params
     params.require(:book).permit(:author)
   end
 
-  # def genre_params
-  #   params.require(:book).permit(:genre)
-  # end
+  def genres_collection
+    Genre.all.map { |genre| [genre.genre_name, genre.id] }
+  end
 end

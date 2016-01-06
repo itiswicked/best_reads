@@ -14,7 +14,6 @@ feature "visitors can add books" do
   end
 
   scenario "visitor adds new book successfully" do
-
     visit new_book_path
     expect(page).to have_content "New Book Form"
 
@@ -23,7 +22,6 @@ feature "visitors can add books" do
     fill_in 'Description', with: "A crazy monk goes on a sex crazed rampage."
     fill_in 'Year', with: "1796"
     select 'Satire', from: "Genres"
-
 
     click_button "Add Book"
 
