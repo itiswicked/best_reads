@@ -15,7 +15,6 @@ require 'rails_helper'
 # [ ] A user should be able to edit their password
 # [ ] There should be a password confirmation when a password is to be changed
 
-
 feature 'User edits their existing account' do
 
   let(:user) { FactoryGirl.create(:user) }
