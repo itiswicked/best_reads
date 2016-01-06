@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :books
 
   resources :authors, except: [:destroy] do
-   resources :books
+    resources :books
   end
 
   devise_for :users
