@@ -38,7 +38,7 @@ class BooksController < ApplicationController
                                  :year,
                                  :genre_id,
                                  :author_id
-                                 )
+                                )
   end
 
   def author_params
