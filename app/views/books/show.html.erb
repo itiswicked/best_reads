@@ -1,0 +1,19 @@
+<h1>
+  <%= @book.title %>
+</h1>
+<span>
+  Published: <%= @book.year %>
+  <br>
+  By: <%= @book.author.name %>
+</span>
+
+<p>
+  Synopsis:
+  <br>
+  <%= @book.description %>
+  <br>
+    created by:
+  <h5>
+   <%= @book.user.first_name %>
+  </h5>
+</p>
