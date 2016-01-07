@@ -1,0 +1,16 @@
+<h1>All the Books</h1>
+<h2>Listed Alphabetically by Title</h3>
+<ul>
+
+  <% @books.each do |book| %>
+  <li>
+    <h3>
+      <%= link_to book.title, book_path(book) %>
+    </h3>
+    <span>
+      <%= book.created_at.strftime("%B %d, %Y") %>
+    </span>
+  </li>
+    <% end %>
+
+</ul>

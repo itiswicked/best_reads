@@ -1,0 +1,25 @@
+<div class="buffer">
+
+</div>
+<div class="wrapper">
+  <h1 class="title">New Book Form</h1>
+
+  <%= form_for(@book) do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: "Book title", class: "input" %>
+    <br>
+    <%= f.label :description %>
+    <%= f.text_field :description, placeholder: "book description", class: "input" %>
+    <br>
+    <%= f.label :year %>
+    <%= f.text_field :year, placeholder: "Book Publication Year", class: "input" %>
+    <br>
+    <%= f.label :genre_id, "Genres" %>
+    <%= f.select :genre_id, @genres_collection %>
+    <br>
+
+    <%= f.label :author, "Author" %>
+    <%= f.text_field :author, placeholder: "Author Name", class: "input" %>
+    <%= f.submit "Add Book", class: "submit" %>
+  <% end %>
+</div>
