@@ -12,8 +12,8 @@ require 'rails_helper'
 # [x] A user should be able to edit their last name
 # [x] A user should be able to edit their email
 # [x] A user must input their current password to update info
-# [ ] A user should be able to edit their password
-# [ ] There should be a password confirmation when a password is to be changed
+# [x] A user should be able to edit their password
+# [x] There should be a password confirmation when a password is to be changed
 
 feature 'User edits their existing account' do
 

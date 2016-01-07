@@ -35,7 +35,7 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
   end
 
-  config.before(:each, :js => true) do
+  config.before(:each, js: true) do
     DatabaseCleaner.strategy = :truncation
   end
 
@@ -74,10 +74,3 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
-
-# module ::RSpec::Code
-#   class ExampleGroup
-#     include Capybara::DSL
-#     include Capybara::RSpecMatchers
-#   end
-# end

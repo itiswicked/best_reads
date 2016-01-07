@@ -6,12 +6,11 @@ require 'rails_helper'
 #
 # Acceptance Criteria
 #
-# [ ] A user should be able to click a button to delete an account
-# [ ] A user should be a prompted with a confirmation for account deletion (Are you sure?)
-# [ ] Once an account is deleted, a user should be logged out and re routed to the home page.
-# [ ] A user should should not exist in the database once their account has been deleted.
-# [ ] All books and reviews associated with that user are deleted
-
+# [x] A user should be able to click a button to delete an account
+# [x] A user should be a prompted with a confirmation for account deletion
+# [x] Once an account is deleted, a user should be logged out and re routed to the home page.
+# [x] A user should should not exist in the database once their account has been deleted.
+# [x] All books and reviews associated with that user are deleted
 
 feature 'User deletes their existing account' do
   scenario 'User visits Edit Account page to delete their account', :driver => :selenium do
@@ -29,13 +28,15 @@ feature 'User deletes their existing account' do
     click_link 'Sign In'
     fill_in "Email", with: 'foo1@bar.com'
     fill_in "Password", with: 'password'
+
     click_button 'Sign In'
     click_link 'Edit Profile'
     click_button 'Cancel my account'
+
     popup = page.driver.browser.switch_to.alert
     popup.accept
-
-    expect(page).to have_content "Bye! Your account has been successfully cancelled."
+    expect(page).to have_content "Bye! Your account has been successfully
+                                  cancelled."
 
     click_link 'Sign In'
     fill_in "Email", with: 'foo1@bar.com'
