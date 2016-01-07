@@ -8,8 +8,10 @@ require 'rails_helper'
 #
 # [x] A user should be able to click a button to delete an account
 # [x] A user should be a prompted with a confirmation for account deletion
-# [x] Once an account is deleted, a user should be logged out and re routed to the home page.
-# [x] A user should should not exist in the database once their account has been deleted.
+# [x] Once an account is deleted, a user should be logged out and re routed
+# =>  to the home page.
+# [x] A user should should not exist in the database once their account has
+# =>  been deleted.
 # [x] All books and reviews associated with that user are deleted
 
 feature 'User deletes their existing account' do
