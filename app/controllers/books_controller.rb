@@ -21,6 +21,10 @@ class BooksController < ApplicationController
     @author = Author.find_or_create_by(name: author_params[:author])
     @book.author = @author
 
+    @user = User.find_by(params[:id])
+
+    @book.user = @user
+
     if @book.save
       flash[:notice] = "Book added successfully"
       redirect_to books_path, alert: "Book Added Successfully"
@@ -37,8 +41,9 @@ class BooksController < ApplicationController
                                  :description,
                                  :year,
                                  :genre_id,
-                                 :author_id
-                                )
+                                 :author_id,
+                                 :user_id
+                                 )
   end
 
   def author_params
