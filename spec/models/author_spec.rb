@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 describe Author do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should have_valid(:name).when('Foo') }
+  it { should_not have_valid(:name).when(nil, '') }
+
 end
