@@ -13,7 +13,8 @@ require 'rails_helper'
 # [x] All books and reviews associated with that user are deleted
 
 feature 'User deletes their existing account' do
-  scenario 'User visits Edit Account page to delete their account', :driver => :selenium do
+  scenario 'User visits Edit Account page to delete their account',
+  driver: :selenium do
 
     visit '/'
     click_link 'Sign Up'
