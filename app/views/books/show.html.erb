@@ -5,6 +5,8 @@
   Published: <%= @book.year %>
   <br>
   By: <%= @book.author.name %>
+  <br>
+  Genre: <%= @book.genre.genre_name %>
 </span>
 
 <p>
@@ -12,3 +14,5 @@
   <br>
   <%= @book.description %>
 </p>
+
+<%= link_to 'Add Review', new_review_path(@book) %>
