@@ -27,7 +27,7 @@ class BooksController < ApplicationController
 
     if @book.save
       flash[:notice] = "Book added successfully"
-      redirect_to books_path, alert: "Book Added Successfully"
+      redirect_to books_path
     else
       flash[:notice] = "Book not created"
       render :new
