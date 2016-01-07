@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "visitors can add books" do
+feature "users can add books" do
 
   before(:each) do
     Genre.create(genre_name: "Comedy")
@@ -13,7 +13,14 @@ feature "visitors can add books" do
     Genre.create(genre_name: "TragiComedy")
   end
 
-  scenario "visitor adds new book successfully" do
+  scenario "user adds new book successfully" do
+    user = FactoryGirl.create(:user)
+    visit root_path
+    click_link 'Sign In'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign In'
+
     visit new_book_path
     expect(page).to have_content "New Book Form"
 
@@ -27,9 +34,11 @@ feature "visitors can add books" do
 
     expect(page).to have_content "Book added successfully"
     expect(page).to have_content "The Monk"
+    click_link "The Monk"
+    expect(page).to have_content user.first_name
   end
 
-  scenario "visitor does not provide proper information for a book" do
+  scenario "user does not provide proper information for a book" do
     visit new_book_path
 
     click_button "Add Book"

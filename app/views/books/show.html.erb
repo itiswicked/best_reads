@@ -13,6 +13,11 @@
   Synopsis:
   <br>
   <%= @book.description %>
+  <br>
+    created by:
+  <h5>
+   <%= @book.user.first_name %>
+  </h5>
 </p>
 
 <%= link_to 'Add Review', new_review_path(@book) %>
