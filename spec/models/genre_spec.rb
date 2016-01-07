@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 describe Genre do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "is a genre" do
+    genre = Genre.new
+    expect(genre).to be_a Genre
+  end
 end
