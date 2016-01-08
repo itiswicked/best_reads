@@ -1,12 +1,4 @@
 class ReviewsController < ApplicationController
-  # def index
-  #   @reviews = Review.all
-  # end
-  #
-  # def show
-  #   @book = Book.find(params[:id])
-  #   @reviews = @book.reviews
-  # end
 
   RATINGS = [1, 2, 3, 4, 5]
 
