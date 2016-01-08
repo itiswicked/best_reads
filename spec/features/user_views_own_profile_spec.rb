@@ -26,7 +26,7 @@ feature 'users views profiles' do
   end
 
   scenario 'not logged in cannot view any profile' do
-    visit user_path(user_signed_in)
+    visit user_path(user)
     expect(page).to have_content 'You are not authorized to view this.'
   end
 end
