@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
   #   @reviews = @book.reviews
   # end
 
-  RATINGS = [1,2,3,4,5]
+  RATINGS = [1, 2, 3, 4, 5]
 
   def new
     @book = Book.find(params[:book_id])
@@ -43,9 +43,9 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:title,
-                                 :body,
-                                 :rating,
-                                 :user_id
-                                )
+                                   :body,
+                                   :rating,
+                                   :user_id
+                                  )
   end
 end
