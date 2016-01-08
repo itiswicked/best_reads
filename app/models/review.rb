@@ -4,4 +4,8 @@ class Review < ActiveRecord::Base
 
   validates :body, length: { maximum: 500 }
   validates :rating, presence: true
+
+  def full_user_name
+    return "#{user.first_name.capitalize} #{user.last_name.chars.first.capitalize}"
+  end
 end

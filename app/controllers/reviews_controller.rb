@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-
   RATINGS = [1, 2, 3, 4, 5]
 
   def new
@@ -13,7 +12,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @ratings_collection = RATINGS
 
-    @user = User.find_by(params[:id])
+    @user = current_user
     @review.user = @user
     @review.book = @book
 
@@ -23,10 +22,10 @@ class ReviewsController < ApplicationController
       flash[:notice] = "You've already written a review for this book."
 
     elsif @review.save
-      flash[:notice] = "Review added successfully"
+      flash[:success] = "Review added successfully"
       redirect_to book_path(@book)
     else
-      flash[:notice] = "Review not created"
+      flash[:warning] = @review.errors.full_messages.join(', ')
       render :new
     end
   end

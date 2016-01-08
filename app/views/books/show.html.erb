@@ -13,9 +13,8 @@
   Synopsis:
   <br>
   <%= @book.description %>
-  <br>
-    created by:
-  <h5>
+  <br><br>
+    Added by:<br>
    <%= @book.user.first_name %>
   </h5>
 </p>
@@ -24,9 +23,9 @@ Reviews for <%= @book.title %>:
 <ul>
 <% @reviews.each do |review|%>
   <li>
-    <h3><%= review.title %></h3> Votes: <%= review.votes %><br>
-    <%= review.user.first_name.chars.first.capitalize %> <%= review.user.last_name %>
-    <br>
+    <h3><%= review.title %></h3>
+    Votes: <%= review.votes %><br>
+    <%= review.full_user_name %><br>
     Rating: <%= review.rating %> <br>
     <%= review.body %> <br>
     Reviewed on:  <%= review.created_at.strftime("%B %d, %Y") %>

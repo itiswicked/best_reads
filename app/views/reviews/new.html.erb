@@ -2,18 +2,6 @@
   <h1 class="title">New Review Form</h1>
 
   <%= form_for([@book, @review]) do |f| %>
-
-  <% if @review.errors.any? %>
-    <div id="error_explanation">
-      <h3><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h3>
-
-      <ul>
-        <% @review.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
     <br>
     <%= f.label :title, 'Title' %>
     <br>
