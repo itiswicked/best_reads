@@ -1,0 +1,20 @@
+<div class="wrapper">
+  <h1 class="title">New Review Form</h1>
+
+  <%= form_for([@book, @review]) do |f| %>
+    <br>
+    <%= f.label :title, 'Title' %>
+    <br>
+    <%= f.text_field :title %>
+    <br>
+    <%= f.label :body, 'Review' %>
+    <br>
+    <%= f.text_area :body, size: "30x10" %>
+    <br>
+    <%= f.label :rating, "Rating" %>
+    <%= f.select :rating, @ratings_collection, prompt: "Select Rating" %>
+    <br>
+    <br>
+    <%= f.submit "Add Review" %>
+  <% end %>
+</div>

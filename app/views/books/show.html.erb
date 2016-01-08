@@ -2,18 +2,41 @@
   <%= @book.title %>
 </h1>
 <span>
-  Published: <%= @book.year %>
-  <br>
   By: <%= @book.author.name %>
+  <br>
+  Genre: <%= @book.genre.genre_name %>
+  <br>
+  Published: <%= @book.year %>
 </span>
 
 <p>
   Synopsis:
   <br>
   <%= @book.description %>
-  <br>
-    created by:
-  <h5>
+  <br><br>
+    Added by:<br>
    <%= @book.user.first_name %>
   </h5>
 </p>
+
+Reviews for <%= @book.title %>:
+<ul>
+<% @reviews.each do |review|%>
+  <li>
+    <h3><%= review.title %></h3>
+    Votes: <%= review.votes %><br>
+    <%= review.full_user_name %><br>
+    Rating: <%= review.rating %> <br>
+    <%= review.body %> <br>
+    Reviewed on:  <%= review.created_at.strftime("%B %d, %Y") %>
+  </li>
+<% end %>
+</ul>
+
+<% if user_signed_in? %>
+    <% unless Review.where(user_id: current_user.id, book_id: @book.id).any? %>
+      <%= link_to 'Add Review', new_book_review_path(@book) %>
+    <% end %>
+<% else %>
+  <p> Sign in to add a review! </p>
+<% end %>
