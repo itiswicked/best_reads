@@ -5,25 +5,27 @@ As a user I want to create a review
 that is associated with a book
 so I can tell others what I think of the book
 } do
-# Acceptance Criteria:
+  # Acceptance Criteria:
   #
-  # [√] A user should be able to title their review, required field.
+  # [√] A user should be able to title their review, required field
   # [√] A user should be able to leave a review no greater than 500 words
   # [√] A user should be able to rate a book on a 1 to 5 scale
-  # [√] A user should be able to rate the book in their review on a 1 to 5 scale
-  # [√] A user should not be able to submit more than one review to a single book.
-  # [√] The review should be associated with a book.
-  # [√] The review should have a starting vote of 0.
+  # [√] A user should be able to rate the book on a 1 to 5 scale
+  # [√] A user should not be able to submit more than one review to a book
+  # [√] The review should be associated with a book
+  # [√] The review should have a starting vote of 0
 
   let!(:author) { Author.create(name: "Jane Doe") }
   let!(:genre) { Genre.create(genre_name: "Comedy") }
   let!(:user) { FactoryGirl.create(:user) }
-  let!(:book) { Book.create(title: 'Book Title',
-                            description: 'Book description!',
-                            year: 1988,
-                            genre_id: genre.id,
-                            author_id: author.id,
-                            user_id: user.id) }
+  let!(:book) do
+    Book.create(title: 'Book Title',
+                description: 'Book description!',
+                year: 1988,
+                genre_id: genre.id,
+                author_id: author.id,
+                user_id: user.id)
+  end
 
   scenario 'an authenticated user supplies valid review information' do
     login_as(user, scope: :user)
