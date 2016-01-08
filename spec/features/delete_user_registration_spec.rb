@@ -33,7 +33,7 @@ feature 'User deletes their existing account' do
     fill_in "Password", with: 'password'
 
     click_button 'Sign In'
-    click_link 'Edit Profile'
+    visit '/users/edit'
     click_button 'Cancel my account'
 
     popup = page.driver.browser.switch_to.alert
