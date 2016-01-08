@@ -6,6 +6,6 @@ class Review < ActiveRecord::Base
   validates :rating, presence: true
 
   def full_user_name
-    return "#{user.first_name.capitalize} #{user.last_name.chars.first.capitalize}"
+    "#{user.first_name.capitalize} #{user.last_name.chars.first.capitalize}"
   end
 end
