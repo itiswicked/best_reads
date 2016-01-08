@@ -21,7 +21,7 @@ feature 'users views profiles' do
     visit user_path(user)
     user2 = FactoryGirl.create(:user)
     visit user_path(user2)
-
+    
     expect(page).to_not have_content 'Edit Profile'
   end
 
