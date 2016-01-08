@@ -15,20 +15,13 @@ so I can tell others what I think of the book
 # [√] The review should be associated with a book.
 # [√] The review should have a starting vote of 0.
 
-  before(:all) do
-    author = Author.create(name: "Jane Doe")
-    genre = Genre.create(genre_name: "Comedy")
-    user = FactoryGirl.create(:user)
-    book = Book.create(title: 'Book Title', description: 'Book description!', year: 1988, genre_id: 1, author_id: 1, user_id: 1)
-  end
+  let!(:author) { Author.create(name: "Jane Doe") }
+  let!(:genre) { Genre.create(genre_name: "Comedy") }
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:book) { Book.create(title: 'Book Title', description: 'Book description!', year: 1988, genre_id: genre.id, author_id: author.id, user_id: user.id) }
 
   scenario 'an authenticated user supplies valid review information' do
-    user = FactoryGirl.create(:user)
-    visit root_path
-    click_link 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Sign In'
+    login_as(user, scope: :user)
 
     visit books_path
     click_link 'Book Title'
@@ -44,12 +37,7 @@ so I can tell others what I think of the book
   end
 
   scenario 'an invalid form is not saved' do
-    user = FactoryGirl.create(:user)
-    visit root_path
-    click_link 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Sign In'
+    login_as(user, scope: :user)
 
     visit books_path
 
@@ -66,15 +54,11 @@ so I can tell others what I think of the book
     click_link 'Book Title'
 
     expect(page).to_not have_content('Add Review')
+    expect(page).to have_content('Sign in to add a review!')
   end
 
   scenario 'a user cannot review a book more than once' do
-    user = FactoryGirl.create(:user)
-    visit root_path
-    click_link 'Sign In'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
-    click_button 'Sign In'
+    login_as(user, scope: :user)
 
     visit books_path
     click_link 'Book Title'
@@ -85,12 +69,6 @@ so I can tell others what I think of the book
     fill_in 'Review', with: 'This book is good for the most part'
     click_button 'Add Review'
 
-    click_link 'Add Review'
-    fill_in 'Title', with: 'Good book I guess'
-    select '4', from: 'Rating'
-    fill_in 'Review', with: 'This book is good for the most part'
-    click_button 'Add Review'
-    save_and_open_page
-    expect(page).to have_content("You've already written a review for this book.")
+    expect(page).to_not have_content("Add Review")
   end
 end

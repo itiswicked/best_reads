@@ -24,7 +24,7 @@
     <%= f.text_area :body, size: "30x10" %>
     <br>
     <%= f.label :rating, "Rating" %>
-    <%= f.select :rating, @ratings_collection %>
+    <%= f.select :rating, @ratings_collection, prompt: "Select Rating" %>
     <br>
     <br>
     <%= f.submit "Add Review" %>

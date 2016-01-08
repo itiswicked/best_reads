@@ -19,6 +19,8 @@ class BooksController < ApplicationController
     @genres_collection = genres_collection
 
     @author = Author.find_or_create_by(name: author_params[:author])
+    # unless (author_params[:author] == nil || author_params[:author] == '')
+
     @book.author = @author
 
     @user = User.find_by(params[:id])

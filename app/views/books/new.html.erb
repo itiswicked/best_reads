@@ -5,6 +5,18 @@
   <h1 class="title">New Book Form</h1>
 
   <%= form_for(@book) do |f| %>
+
+  <% if @book.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= pluralize(@book.errors.count, "error") %> prohibited this book from being saved:</h3>
+      <ul>
+        <% @book.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
     <%= f.label :title %>
     <%= f.text_field :title, placeholder: "Book title", class: "input" %>
     <br>
