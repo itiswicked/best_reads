@@ -1,5 +1,4 @@
 class AdminsController < Devise::RegistrationsController
-
   private
 
   def sign_up_params

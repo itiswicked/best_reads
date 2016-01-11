@@ -11,9 +11,11 @@ require 'rails_helper'
 
 feature 'User logs in as an Administrator' do
   scenario 'User navigates to Administrator login view and signs in' do
-    admin = Admin.create(first_name: 'Joe', last_name: 'Schmoe',
-    email: 'example@example.com', password: 'password',
-    password_confirmation: 'password')
+    admin = Admin.create(first_name: 'Joe',
+                         last_name: 'Schmoe',
+                         email: 'example@example.com',
+                         password: 'password',
+                         password_confirmation: 'password')
     visit root_path
     click_link 'Sign In'
     click_link 'Log in as Admin'
