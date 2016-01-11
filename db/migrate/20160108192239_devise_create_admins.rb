@@ -1,6 +1,6 @@
 class DeviseCreateAdmins < ActiveRecord::Migration
   def self.up
-    create_table(:admins) do |t|
+    create_table :admins do |t|
       t.string :email, null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       t.integer  :sign_in_count, default: 0
