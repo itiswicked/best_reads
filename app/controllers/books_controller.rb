@@ -5,7 +5,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    # @reviews = @book.reviews
+    @reviews = @book.reviews
   end
 
   def new
@@ -19,17 +19,18 @@ class BooksController < ApplicationController
     @genres_collection = genres_collection
 
     @author = Author.find_or_create_by(name: author_params[:author])
+
     @book.author = @author
 
-    @user = User.find_by(params[:id])
+    @user = current_user
 
     @book.user = @user
 
     if @book.save
-      flash[:notice] = "Book added successfully"
-      redirect_to books_path, alert: "Book Added Successfully"
+      flash[:success] = "Book added successfully"
+      redirect_to books_path
     else
-      flash[:notice] = "Book not created"
+      flash[:warning] = @book.errors.full_messages.join(', ')
       render :new
     end
   end

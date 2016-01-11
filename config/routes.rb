@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
-  resources :books
+  resources :books do
+    resources :reviews
+  end
+
+  resources :users, only: [:show]
 
   resources :authors, except: [:destroy] do
     resources :books
