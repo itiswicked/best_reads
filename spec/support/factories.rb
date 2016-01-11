@@ -22,4 +22,10 @@ FactoryGirl.define do
   factory :author do
     name 'Jane Doe'
   end
+
+  factory :review do
+    title "Review Title!"
+    body "Review Body"
+    rating 4
+  end
 end
