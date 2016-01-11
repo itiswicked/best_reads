@@ -1,6 +1,6 @@
 <h3>Hello <%= @user.first_name %>!</h3>
 
-<%= image_tag '#' %>
+<%= image_tag @user.profile_photo %>
 
 <%= link_to "Upload profile photo", "#" %>
 
@@ -9,5 +9,5 @@
 <p>Email: <%= @user.email %></p>
 
 <% if @user == current_user %>
-  <%= link_to 'Edit Profile', edit_user_registration_path %>
+ <%= link_to 'Edit Profile', edit_user_registration_path %>
 <% end %>

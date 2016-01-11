@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  mount_uploader :profile_photo, ProfilePhotoUploader
+
   has_many :books
   has_many :reviews
 
