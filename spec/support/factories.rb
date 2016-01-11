@@ -15,6 +15,18 @@ FactoryGirl.define do
     author_id '1'
   end
 
+  factory :dynamic_book, class: Book do
+    sequence(:title) do |i|
+      i = i.to_s.rjust(2, "0") if i < 10
+      "Book Title#{i}"
+    end
+    sequence(:description) { |i| "A book about things#{i}" }
+    year '1998'
+    sequence(:user_id) { |i| "#{i}" }
+    sequence(:genre_id) { |i| "#{i}" }
+    sequence(:author_id) { |i| "#{i}" }
+  end
+
   factory :genre do
     genre_name 'Comedy'
   end

@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all
+    @books = Book.order(:title).page params[:page]
   end
 
   def show
@@ -44,7 +44,7 @@ class BooksController < ApplicationController
                                  :genre_id,
                                  :author_id,
                                  :user_id
-                                 )
+    )
   end
 
   def author_params
