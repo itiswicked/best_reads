@@ -15,9 +15,7 @@ feature 'user views lots of reviews via pagination' do
 #     more books are loaded automatically without a page refresh and the
 #     'more reviews' button goes away.
 # [x] Pagination should be handled by the Kaminari gem
-
-
-
+  
   let!(:dynamic_book) do
     b = FactoryGirl.build(:dynamic_book)
     b.author = FactoryGirl.create(:author)
