@@ -17,13 +17,13 @@ class ReviewsController < ApplicationController
     @review.book = @book
 
     if Review.where(user_id: @user.id, book_id: @book.id).any?
-      redirect_to book_path(@book)
-
       flash[:notice] = "You've already written a review for this book."
+      redirect_to book_path(@book)
 
     elsif @review.save
       flash[:success] = "Review added successfully!"
       redirect_to book_path(@book)
+      ReviewMailer.new_review(@review).deliver_later
     else
       flash[:warning] = @review.errors.full_messages.join(', ')
       render :new
