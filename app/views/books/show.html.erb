@@ -33,10 +33,8 @@ Reviews for <%= @book.title %>:
 <% end %>
 </ul>
 
-<% if user_signed_in? %>
-    <% unless Review.where(user_id: current_user.id, book_id: @book.id).any? %>
-      <%= link_to 'Add Review', new_book_review_path(@book) %>
-    <% end %>
-<% else %>
+<% if !user_signed_in? %>
   <p> Sign in to add a review! </p>
+<% elsif !reviewed?(@book) %>
+    <%= link_to 'Add Review', new_book_review_path(@book) %>
 <% end %>

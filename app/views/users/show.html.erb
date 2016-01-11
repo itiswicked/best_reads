@@ -20,6 +20,7 @@
       Rating: <%= review.rating %><br>
       <%= review.title %>
       <%= review.body %>
+      <%= button_to "Delete This Review", { controller: "reviews", action: :destroy, id: review.id }, data: { confirm: "Are you sure?" }, method: :delete %>
     </li><br>
   <% end %>
 </ul>

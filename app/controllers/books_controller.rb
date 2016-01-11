@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  helper_method :reviewed?
+
   def index
     @books = Book.all
   end
@@ -33,6 +35,10 @@ class BooksController < ApplicationController
       flash[:warning] = @book.errors.full_messages.join(', ')
       render :new
     end
+  end
+
+  def reviewed?(book)
+    Review.where(user_id: current_user.id, book_id: book.id).any?
   end
 
   private

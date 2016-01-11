@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-feature 'user can see all reviews left on books', %{
+feature 'user can delete their own reviews', %{
   As a user,
-  I want to see all the reviews I have left on books
-  So that I can see all my reviews
+  I want to delete my own reviews,
+  So that no one can see them
 } do
 
   # Acceptance Criteria
-  #
-  # [√] I want to see all of my reviews from my profile page
+  # [√] I can delete my reviews from my profile page
+  # [√] If I delete a review, no one can see them anymore
 
   let!(:user) { FactoryGirl.create(:user) }
   let!(:author) { FactoryGirl.create(:author) }
@@ -25,13 +25,11 @@ feature 'user can see all reviews left on books', %{
     book_id: book.id)
   }
 
-  scenario 'user sees all reviews from profile page' do
-
+  scenario "user can delete a review" do
     login_as(user, scope: :user)
     visit user_path(user.id)
+    click_button "Delete This Review"
 
-    expect(page).to have_content("Your reviews:")
-    expect(page).to have_content("Review Title!")
-    expect(page).to have_content("Review Body")
+    expect(page).to_not have_content("Review Title!")
   end
 end
