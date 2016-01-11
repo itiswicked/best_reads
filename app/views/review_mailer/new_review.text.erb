@@ -1,0 +1,7 @@
+Hello, <%= @review.book.user.first_name %>!
+
+<%= @review.user.full_user_name %> has left a new review for your book <%= @review.book.title %>.
+
+Check it out! <%= link_to "#{@review.book.title}", book_url(@review.book)%>
+
+-BestReads Team
