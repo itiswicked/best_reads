@@ -10,11 +10,13 @@ when somebody posts a review on a book I've submitted
   # [] As a user, I want to receive an email when
   #    another user posts a review on a book I created
 
-  scenario "review a product" do
+  scenario "review a book" do
     ActionMailer::Base.deliveries.clear
-    
-    book = FactoryGirl.create(:book)
+
     user = FactoryGirl.create(:user)
+    genre = FactoryGirl.create(:genre)
+    author = FactoryGirl.create(:author)
+    book = FactoryGirl.create(:book, author_id: author.id, user_id: user.id, genre_id: genre.id)
 
     login_as(user, scope: :user)
 
@@ -28,3 +30,4 @@ when somebody posts a review on a book I've submitted
     expect(page).to have_content("Good book I guess")
     expect(ActionMailer::Base.deliveries.count).to eq(1)
   end
+end
