@@ -3,8 +3,8 @@ class ReviewMailer < ApplicationMailer
     @review = review
 
     mail(
-    to: review.book.user.email,
-    subject: "New Review for #{review.book.title}!"
+      to: review.book.user.email,
+      subject: "New Review for #{review.book.title}!"
     )
   end
 end
