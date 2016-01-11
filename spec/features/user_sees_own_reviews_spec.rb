@@ -4,7 +4,7 @@ feature 'user can see all reviews left on books', %{
   As a user,
   I want to see all the reviews I have left on books
   So that I can see all my reviews
-  } do
+} do
 
     # Acceptance Criteria
     #
@@ -14,8 +14,15 @@ feature 'user can see all reviews left on books', %{
     user = FactoryGirl.create(:user)
     author = FactoryGirl.create(:author)
     genre = FactoryGirl.create(:genre)
-    book = FactoryGirl.create(:book, user_id: user.id, author_id: author.id, genre_id: genre.id)
-    review = FactoryGirl.create(:review, user_id: user.id, book_id: book.id)
+    book = FactoryGirl.create(
+      :book,
+      user_id: user.id,
+      author_id: author.id,
+      genre_id: genre.id)
+    review = FactoryGirl.create(
+      :review,
+      user_id: user.id,
+      book_id: book.id)
 
     login_as(user, scope: :user)
     visit user_path(user.id)
