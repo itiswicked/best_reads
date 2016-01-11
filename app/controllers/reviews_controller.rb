@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
       flash[:notice] = "You've already written a review for this book."
 
     elsif @review.save
-      flash[:success] = "Review added successfully"
+      flash[:success] = "Review added successfully!"
       redirect_to book_path(@book)
     else
       flash[:warning] = @review.errors.full_messages.join(', ')
@@ -38,5 +38,9 @@ class ReviewsController < ApplicationController
                                    :rating,
                                    :user_id
                                   )
+  end
+
+  def user_reviewed?
+    Review.where(user_id: current_user.id, book_id: @book.id).any?
   end
 end

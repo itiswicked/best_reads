@@ -20,6 +20,11 @@
     <% end %>
   </ul>
 </nav>
+  <%- flash.each do |key, value| -%>
+    <div class="flash flash-<%= key %>">
+      <%= value %>
+    </div>
+  <%- end -%>
 
   <% if notice %>
    <p class="alert alert-success"><%= notice %></p>
