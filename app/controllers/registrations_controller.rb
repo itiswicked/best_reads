@@ -14,6 +14,6 @@ class RegistrationsController < Devise::RegistrationsController
       :password,
       :password_confirmation,
       :current_password
-      )
+                                )
   end
 end
