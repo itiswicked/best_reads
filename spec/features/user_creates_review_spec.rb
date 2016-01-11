@@ -53,7 +53,7 @@ so I can tell others what I think of the book
 
     click_button 'Add Review'
 
-    expect(page).to have_content('Review not created')
+    expect(page).to have_content("Rating can't be blank")
   end
 
   scenario 'an unauthenticated user cannot create a review' do

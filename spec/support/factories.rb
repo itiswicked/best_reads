@@ -35,7 +35,6 @@ FactoryGirl.define do
     name 'Jane Doe'
   end
 
-  # must create association with book manually
   factory :review do
     sequence(:title) { |i| "Awesome#{i}" }
     body 'Loved every minute'

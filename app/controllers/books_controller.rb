@@ -27,7 +27,7 @@ class BooksController < ApplicationController
     @book.user = @user
 
     if @book.save
-      flash[:success] = "Book added successfully"
+      flash[:success] = "Book added successfully!"
       redirect_to books_path
     else
       flash[:warning] = @book.errors.full_messages.join(', ')
