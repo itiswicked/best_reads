@@ -39,5 +39,4 @@ class ReviewsController < ApplicationController
                                    :user_id
                                   )
   end
-
 end

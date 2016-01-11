@@ -8,5 +8,4 @@ class Review < ActiveRecord::Base
   def full_user_name
     "#{user.first_name.capitalize} #{user.last_name.chars.first.capitalize}"
   end
-
 end
