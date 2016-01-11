@@ -40,7 +40,4 @@ class ReviewsController < ApplicationController
                                   )
   end
 
-  def user_reviewed?
-    Review.where(user_id: current_user.id, book_id: @book.id).any?
-  end
 end
