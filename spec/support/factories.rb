@@ -6,7 +6,7 @@ FactoryGirl.define do
     password 'password'
     password_confirmation 'password'
   end
-
+  
   factory :book do
     title 'Book Name'
     description 'A book about things'
