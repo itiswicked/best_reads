@@ -5,7 +5,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
-    @reviews = @book.reviews
+    @reviews = @book.reviews.order(created_at: :asc).page params[:page]
   end
 
   def new
