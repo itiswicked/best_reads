@@ -8,4 +8,8 @@ class Review < ActiveRecord::Base
   def full_user_name
     "#{user.first_name.capitalize} #{user.last_name.chars.first.capitalize}"
   end
+
+  def reviewed_by?(user)
+    where(user_id: user.id, book_id: book.id).any?
+  end
 end

@@ -9,6 +9,7 @@ feature 'user can delete their own reviews', %{
   # Acceptance Criteria
   # [√] I can delete my reviews from my profile page
   # [√] If I delete a review, no one can see them anymore
+  # [] No one else can delete my reviews
 
   let!(:user) { FactoryGirl.create(:user) }
   let!(:author) { FactoryGirl.create(:author) }

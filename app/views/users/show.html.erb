@@ -1,8 +1,10 @@
+<% if @user == current_user %>
 <h3>Hello <%= @user.first_name %>!</h3>
-
-<%= image_tag '#' %>
-
 <%= link_to "Upload profile photo", "#" %>
+<% end %>
+
+<br><%= image_tag '#' %>
+
 
 <p>First Name: <%= @user.first_name %> </p>
 <p>Last Name: <%= @user.last_name %> </p>
@@ -10,17 +12,21 @@
 
 <% if @user == current_user %>
   <%= link_to 'Edit Profile', edit_user_registration_path %>
+  <h4>Your reviews:</h4>
+<% else %>
+  <%= @user.first_name %>'s Reviews:
 <% end %>
-
-<h4>Your reviews:</h4>
 <ul>
   <% @user.reviews.each do |review| %>
     <li>
-      Your review for <%= link_to review.book.title, book_path(review.book) %>:<br>
+      Review for <%= link_to review.book.title, book_path(review.book) %>:<br>
       Rating: <%= review.rating %><br>
       <%= review.title %>
       <%= review.body %>
-      <%= button_to "Delete This Review", { controller: "reviews", action: :destroy, id: review.id }, data: { confirm: "Are you sure?" }, method: :delete %>
+
+      <% if @user == current_user %>
+        <%= button_to "Delete This Review", { controller: "reviews", action: :destroy, id: review.id }, data: { confirm: "Are you sure?" }, method: :delete %>
+      <% end %>
     </li><br>
   <% end %>
 </ul>

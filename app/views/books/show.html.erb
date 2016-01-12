@@ -24,7 +24,6 @@ Reviews for <%= @book.title %>:
 <% @reviews.each do |review|%>
   <li>
     <h3><%= review.title %></h3>
-    Votes: <%= review.votes %><br>
     <%= review.full_user_name %><br>
     Rating: <%= review.rating %> <br>
     <%= review.body %> <br>
