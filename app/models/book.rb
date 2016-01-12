@@ -1,4 +1,10 @@
 class Book < ActiveRecord::Base
+  include PgSearch
+  multisearchable against: [
+    :title,
+    :description
+  ]
+
   belongs_to :author
   belongs_to :user
   belongs_to :genre

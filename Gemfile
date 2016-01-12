@@ -16,6 +16,7 @@ gem 'coveralls', require: false
 
 gem 'foundation-rails'
 gem 'kaminari'
+gem 'pg_search'
 
 group :development, :test do
   gem 'pry-rails'

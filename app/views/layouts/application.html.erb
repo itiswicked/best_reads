@@ -33,6 +33,11 @@
    <p class="alert alert-danger"><%= alert %></p>
   <% end %>
 
+  <%= form_tag results_index_path, method: :get do %>
+  <%= text_field_tag :query, params[:query] %>
+  <%= submit_tag "GO", name: nil %>
+<% end %>
+
 <%= yield %>
 
 </body>
