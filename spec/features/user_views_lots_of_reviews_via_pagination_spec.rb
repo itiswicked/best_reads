@@ -16,29 +16,18 @@ feature 'user views lots of reviews via pagination' do
 #     'more reviews' button goes away.
 # [x] Pagination should be handled by the Kaminari gem
 
-  let!(:dynamic_book) do
-    b = FactoryGirl.build(:dynamic_book)
-    b.author = FactoryGirl.create(:author)
-    b.user = FactoryGirl.create(:user)
-    b.genre = Genre.create(genre_name: "Mystery")
-    b.save
-    b
-  end
+  let!(:book) { FactoryGirl.create(:book) }
 
-  # Sleep is so created_at timestamps are guaranteed to be unique
+  # Sleep gauarantees created_at timestamps are unique
   21.times do |i|
     let!("review#{i + 1}".to_sym) do
-      r = FactoryGirl.build(:review)
-      r.user = FactoryGirl.create(:user)
-      r.book = dynamic_book
-      r.save
-      r
+      FactoryGirl.create(:review, book: book)
     end
     sleep(1)
   end
 
   scenario 'scrolls to the bottom and does not see more than 20 reviews' do
-    visit book_path(dynamic_book)
+    visit book_path(book)
 
     expect(page).to have_content review1.title
     expect(page).to have_content review20.title
@@ -46,7 +35,7 @@ feature 'user views lots of reviews via pagination' do
   end
 
   scenario 'scrolls to the bottom and wants to see more than 20 reviews' do
-    visit book_path(dynamic_book)
+    visit book_path(book)
     click_link 'Next'
 
     expect(page).to have_content review21.title

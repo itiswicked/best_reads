@@ -20,7 +20,7 @@ feature 'user views lots of books via pagination' do
 # [Kaminari Docs](http://inch-ci.org/github/amatsuda/kaminari)
 
   21.times do |i|
-    let!("book#{i + 1}".to_sym) { FactoryGirl.create(:dynamic_book) }
+    let!("book#{i + 1}".to_sym) { FactoryGirl.create(:book) }
   end
 
   scenario 'scrolls to the bottom and does not see more than 20 books' do
