@@ -10,4 +10,6 @@ class Book < ActiveRecord::Base
   validates :title, presence: true
   validates :description, presence: true
   validates :year, presence: true, numericality: true
+
+  paginates_per 20
 end
