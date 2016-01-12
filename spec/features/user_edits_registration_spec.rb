@@ -20,13 +20,7 @@ feature 'User edits their existing account' do
   let(:user) { FactoryGirl.create(:user) }
 
   before(:each) do
-
-    visit '/'
-    click_link 'Sign In'
-    fill_in "Email", with: user.email
-    fill_in "Password", with: 'password'
-    click_button 'Sign In'
-
+    login_as(user, scope: :user)
     visit edit_user_registration_path(user)
   end
 
@@ -37,7 +31,6 @@ feature 'User edits their existing account' do
   end
 
   scenario 'User edits with new valid information' do
-
     fill_in 'First Name', with: 'Sam'
     fill_in 'Last Name', with: 'Mendes'
     fill_in 'Email', with: 'sam@coolmovies.com'
@@ -53,9 +46,7 @@ feature 'User edits their existing account' do
   end
 
   scenario 'User does not provide information' do
-
     click_button 'Update'
-
     expect(page).to have_content "Current password can't be blank"
   end
 end

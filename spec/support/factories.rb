@@ -34,6 +34,7 @@ FactoryGirl.define do
     sequence(:title) { |i| "Awesome#{i}" }
     body 'Loved every minute'
     rating "5"
+    book
     user
   end
 end
