@@ -4,7 +4,7 @@
 
 <% @books.each do |book| %>
   <li>
-    <h3><%= link_to book.title, book_path(book) %></h3>
+    <h3><%= link_to book.title, book_path(book), class: 'button success radius small' %></h3>
     <span><%= book.created_at.strftime("%B %d, %Y") %></span>
   </li>
 <% end %>

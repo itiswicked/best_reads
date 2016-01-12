@@ -12,4 +12,14 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
+
+ .top-bar {
+   margin-bottom: 30px;
+ }
+
+ .name {
+   display: inline;
+ }
