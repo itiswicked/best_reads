@@ -1,6 +1,8 @@
 <li>
   <h3><%= review.title %></h3>
-  <%= link_to  %>
+  <% if review.user == current_user %>
+    <%= link_to "Edit", [:edit, review.book, review]  %>
+  <% end %>
   Votes: <%= review.votes %><br>
   <%= review.full_user_name %><br>
   Rating: <%= review.rating %> <br>

@@ -30,8 +30,15 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+    @review = Review.find(params[:id])
+    @book = @review.book
+    @ratings_collection = RATINGS
+    render :new
+  end
+
   def update
-binding.pry
+
   end
 
   private

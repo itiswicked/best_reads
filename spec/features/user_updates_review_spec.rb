@@ -19,8 +19,7 @@ feature 'user updates review' do
   let!(:users_review) { FactoryGirl.create(:review) }
   let!(:other_review) { FactoryGirl.create(:review, book: users_review.book) }
 
-  scenario 'from book\'s show page' do
-# binding.pry
+  scenario 'accesses from book\'s show page' do
     login_as(users_review.user, scope: :user)
     visit book_path(users_review.book)
 
@@ -28,12 +27,23 @@ feature 'user updates review' do
     expect(page).to have_content other_review.title
 
     users_review_elem = page.find('li', text: users_review.title)
-    expect(users_review_elem).to have_content 'Udpate'
+    expect(users_review_elem).to have_content 'Edit'
 
-    click_link 'Update'
+    click_link 'Edit'
+
+    expect(find_field('Title').value).to eq users_review.title
+    expect(find_field('Review').value).to eq users_review.body
+
+    fill_in 'Title', with: 'I hated it so much'
+    fill_in 'Review',
+             with: 'So much that flames were coming out the sides of my face'
+    select '4', from: 'Rating'
+    click_button 'Add Review'
+
+    expect(page).to have_content users_review.book.title
   end
 
-  scenario 'from their profile page'
+  scenario 'accesses from their profile page'
 
   scenario 'but not their own review'
 end
