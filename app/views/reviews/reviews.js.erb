@@ -1,0 +1,29 @@
+$("review-upvotes").html('<%=escape_javascript review.upvotes.count.to_s %>')
+
+$("review-downvotes").html('<%=escape_javascript review.downvotes.count.to_s %>')
+
+
+// $('.review-upvotes').on('click', function(e) {
+//         e.preventDefault();
+//
+//         var $this = $(this);
+//         var bookId = <%= @book.id %>
+//         var reviewId = $this.data('review-id');
+//
+//         $.post('/books/' + bookId '/reviews/' + reviewId + '/upvote')
+//          .done(function(resp) {
+//             $this.find('.upvote-count').html(resp.upvotes_count);
+//          })
+//       })
+//
+// $('.review-downvotes').on('click', function(e) {
+//         e.preventDefault();
+//
+//         var $this = $(this);
+//         var reviewId = $this.data('review-id');
+//
+//         $.post('/reviews/' + reviewId + '/downvote')
+//          .done(function(resp) {
+//             $this.find('.downvote-count').html(resp.downvotes_count);
+//          })
+//       })

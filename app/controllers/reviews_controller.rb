@@ -30,6 +30,31 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def create_upvote
+    review = Review.find(params[:review_id])
+    upvote = Upvote.new(review_id: review.id, user_id: current_user.id)
+
+    respond_to do |format|
+      if upvote.save
+        format.html { redirect_to book_path(review.book) }
+        format.js { render json: { upvotes_count: review.upvotes.count } }
+        # redirect_to book_path(review.book)
+      end
+    end
+  end
+
+  def create_downvote
+    review = Review.find(params[:review_id])
+    downvote = Downvote.new(review_id: review.id, user_id: current_user.id)
+
+    respond_to do |format|
+      if downvote.save
+        format.html { redirect_to book_path(review.book) }
+        format.js { render json: { downvotes_count: review.downvotes.count } }
+      end
+    end
+  end
+
   private
 
   def review_params

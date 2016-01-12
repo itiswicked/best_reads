@@ -1,6 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> <%= @book.title %> </title>
+</head>
+<body>
+
 <h1>
   <%= @book.title %>
 </h1>
+
 <span>
   By: <%= @book.author.name %>
   <br>
@@ -23,13 +31,23 @@ Reviews for <%= @book.title %>:
 <ul>
 <% @reviews.each do |review|%>
   <li>
+    <div class='review-upvotes'>
+      <%= link_to "Upvote This Review", book_review_upvote_path(@book, review), data: { review_id: review.id }, remote: true, method: :post %><br>
+    </div>
+
+    <div class='review-downvotes'>
+      <%= link_to "Downvote This Review", book_review_downvote_path(@book, review), data: { review_id: review.id }, remote: true, method: :post %><br>
+    </div>
+
+    Upvote: <%=review.upvotes.count %><br>
+    Downvotes: <%=review.downvotes.count %><br>
+
     <h3><%= review.title %></h3>
-    Votes: <%= review.votes %><br>
     <%= review.full_user_name %><br>
     Rating: <%= review.rating %> <br>
     <%= review.body %> <br>
     Reviewed on:  <%= review.created_at.strftime("%B %d, %Y") %>
-  </li>
+  </li><br>
 <% end %>
 </ul>
 
@@ -40,3 +58,6 @@ Reviews for <%= @book.title %>:
 <% else %>
   <p> Sign in to add a review! </p>
 <% end %>
+
+</body>
+</html>
