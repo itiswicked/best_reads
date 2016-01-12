@@ -10,4 +10,8 @@ class Book < ActiveRecord::Base
   validates :title, presence: true
   validates :description, presence: true
   validates :year, presence: true, numericality: true
+
+  def reviewed?(user)
+    Review.where(user_id: user.id, book_id: id).any?
+  end
 end
