@@ -20,7 +20,7 @@ feature 'user updates review' do
   let!(:other_review) { FactoryGirl.create(:review, book: users_review.book) }
 
   scenario 'from book\'s show page' do
-binding.pry
+# binding.pry
     login_as(users_review.user, scope: :user)
     visit book_path(users_review.book)
 
@@ -28,12 +28,9 @@ binding.pry
     expect(page).to have_content other_review.title
 
     users_review_elem = page.find('li', text: users_review.title)
-    expect(users_review_elem).to have_content 'Delete'
+    expect(users_review_elem).to have_content 'Udpate'
 
-    click_link 'Delete'
-
-    expect(page).to have_content 'Review deleted successfully.'
-    expect(page).to_not have_content users_review.title
+    click_link 'Update'
   end
 
   scenario 'from their profile page'
