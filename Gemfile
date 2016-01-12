@@ -14,6 +14,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'coveralls', require: false
 
 gem 'foundation-rails'
+gem 'kaminari'
 
 group :development do
   gem 'web-console', '~> 2.0'
