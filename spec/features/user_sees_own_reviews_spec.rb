@@ -28,7 +28,7 @@ feature 'user can see all reviews left on books', %{
     visit user_path(user.id)
 
     expect(page).to have_content("Your reviews:")
-    expect(page).to have_content("Review Title!")
-    expect(page).to have_content("Review Body")
+    expect(page).to have_content(review.title)
+    expect(page).to have_content(review.body)
   end
 end

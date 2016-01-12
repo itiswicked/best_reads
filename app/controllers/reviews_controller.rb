@@ -30,13 +30,18 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def update
+binding.pry
+  end
+
   private
 
   def review_params
-    params.require(:review).permit(:title,
-                                   :body,
-                                   :rating,
-                                   :user_id
-                                  )
+    params.require(:review).permit(
+      :title,
+      :body,
+      :rating,
+      :user_id
+    )
   end
 end

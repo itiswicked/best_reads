@@ -14,12 +14,5 @@
 
 <h4>Your reviews:</h4>
 <ul>
-  <% @user.reviews.each do |review| %>
-    <li>
-      Your review for <%= link_to review.book.title, book_path(review.book) %>:<br>
-      Rating: <%= review.rating %><br>
-      <%= review.title %>
-      <%= review.body %>
-    </li><br>
-  <% end %>
+  <%= render partial: 'layouts/review', collection: @reviews %>
 </ul>
