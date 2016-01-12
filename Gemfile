@@ -15,6 +15,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'coveralls', require: false
 
 gem 'foundation-rails'
+gem 'kaminari'
 
 gem 'carrierwave'
 gem 'fog'

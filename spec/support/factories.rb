@@ -7,12 +7,19 @@ FactoryGirl.define do
     password_confirmation 'password'
   end
 
+  # Right justification is for padding book titles with zero's
+  # Otherwise the SQL query retrieving these books and ordering by title
+  # Will not order the books correctly for testing pagination.
   factory :book do
-    title 'Book Name'
-    description 'A book about things'
-    year '1988'
-    genre_id '1'
-    author_id '1'
+    sequence(:title) do |i|
+      i = i.to_s.rjust(2, "0") if i < 10
+      "Book Title#{i}"
+    end
+    sequence(:description) { |i| "A book about things#{i}" }
+    year '1998'
+    user
+    genre
+    author
   end
 
   factory :genre do
@@ -24,8 +31,9 @@ FactoryGirl.define do
   end
 
   factory :review do
-    title "Review Title!"
-    body "Review Body"
-    rating 4
+    sequence(:title) { |i| "Awesome#{i}" }
+    body 'Loved every minute'
+    rating "5"
+    user
   end
 end

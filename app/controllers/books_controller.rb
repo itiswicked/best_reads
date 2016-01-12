@@ -1,11 +1,11 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all
+    @books = Book.order(:title).page params[:page]
   end
 
   def show
     @book = Book.find(params[:id])
-    @reviews = @book.reviews
+    @reviews = @book.reviews.order(created_at: :asc).page params[:page]
   end
 
   def new
