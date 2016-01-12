@@ -12,6 +12,7 @@ feature 'user can delete their own reviews', %{
   # [] No one else can delete my reviews
 
   let!(:user) { FactoryGirl.create(:user) }
+  let!(:user2) { FactoryGirl.create(:user) }
   let!(:author) { FactoryGirl.create(:author) }
   let!(:genre) { FactoryGirl.create(:genre) }
   let!(:book) do FactoryGirl.create(
@@ -32,5 +33,12 @@ feature 'user can delete their own reviews', %{
     click_button "Delete This Review"
 
     expect(page).to_not have_content("Review Title!")
+  end
+
+  scenario "I cannot delete another user's review" do
+    login_as(user, scope: :user)
+    visit user_path(user2.id)
+
+    expect(page).to_not have_content("Delete This Review")
   end
 end
