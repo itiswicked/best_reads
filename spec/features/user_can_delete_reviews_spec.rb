@@ -15,16 +15,16 @@ feature 'user can delete their own reviews', %{
   let!(:user2) { FactoryGirl.create(:user) }
   let!(:author) { FactoryGirl.create(:author) }
   let!(:genre) { FactoryGirl.create(:genre) }
-  let!(:book) do FactoryGirl.create(
-    :book,
-    user_id: user.id,
-    author_id: author.id,
-    genre_id: genre.id)
+  let!(:book) do
+    FactoryGirl.create(:book,
+      user_id: user.id,
+      author_id: author.id,
+      genre_id: genre.id)
   end
-  let!(:review) do FactoryGirl.create(
-    :review,
-    user_id: user.id,
-    book_id: book.id)
+  let!(:review) do
+    FactoryGirl.create(:review,
+      user_id: user.id,
+      book_id: book.id)
   end
 
   scenario "user can delete a review" do

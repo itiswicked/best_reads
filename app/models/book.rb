@@ -10,5 +10,4 @@ class Book < ActiveRecord::Base
   validates :title, presence: true
   validates :description, presence: true
   validates :year, presence: true, numericality: true
-
 end
