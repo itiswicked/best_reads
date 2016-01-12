@@ -11,8 +11,9 @@ FactoryGirl.define do
     title 'Book Name'
     description 'A book about things'
     year '1988'
-    genre_id '1'
-    author_id '1'
+    genre
+    author
+    user
   end
 
   factory :genre do
@@ -27,5 +28,7 @@ FactoryGirl.define do
     title "Review Title!"
     body "Review Body"
     rating 4
+    book
+    user
   end
 end

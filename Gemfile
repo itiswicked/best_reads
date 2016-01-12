@@ -16,6 +16,11 @@ gem 'coveralls', require: false
 
 gem 'foundation-rails'
 
+group :development do
+  gem 'web-console', '~> 2.0'
+  gem 'spring'
+end
+
 group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails'
@@ -26,16 +31,11 @@ group :development, :test do
   gem 'shoulda-matchers', require: false
 end
 
-group :development do
-  gem 'web-console', '~> 2.0'
-
-  gem 'spring'
+group :test do
+  gem 'database_cleaner'
+  gem 'poltergeist'
 end
 
 group :production do
   gem 'rails_12factor'
-end
-
-group :test do
-  gem 'database_cleaner'
 end
