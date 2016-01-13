@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  helper_method :reviewed?
   before_action :authorize_user, except: [:index, :show]
 
   def index
@@ -37,16 +38,41 @@ class BooksController < ApplicationController
     end
   end
 
+  def edit
+    @book = Book.find(params[:id])
+    @genres_collection = genres_collection
+  end
+
+  def update
+    @genres_collection = genres_collection
+    @book = Book.find(params[:id])
+    @author = Author.find_by(name: author_params[:author])
+
+    @book.author = @author
+    @user = current_user
+
+    @book.user = @user
+    @book.update(book_params)
+
+    if @book.save
+      redirect_to book_path(@book)
+    else
+      flash[:errors] = @book.errors.full_messages.join(". ")
+      render action: 'new'
+    end
+  end
+
   private
 
   def book_params
-    params.require(:book).permit(:title,
-                                 :description,
-                                 :year,
-                                 :genre_id,
-                                 :author_id,
-                                 :user_id
-                                 )
+    params.require(:book).permit(
+      :title,
+      :description,
+      :year,
+      :genre_id,
+      :author_id,
+      :user_id
+    )
   end
 
   def author_params
@@ -56,7 +82,7 @@ class BooksController < ApplicationController
   def genres_collection
     Genre.all.map { |genre| [genre.genre_name, genre.id] }
   end
-  
+
   def authorize_user
   if !user_signed_in? || !current_user.admin?
     raise ActionController::RoutingError.new("Not Found")
