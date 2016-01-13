@@ -3,14 +3,16 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
+  resources :books do
+    resources :reviews, only: [:new, :create, :destroy]
+  end
+
+  resources :reviews, only: [:new, :create, :destroy]
+
   resources :users, only: [:show]
 
   resources :authors, except: [:destroy] do
     resources :books
-  end
-
-  resources :books do
-    resources :reviews
   end
 
   namespace :api do
@@ -25,4 +27,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :results, only: [:index]
+
+  get '/search' => 'search#index'
 end

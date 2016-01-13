@@ -1,13 +1,13 @@
-class Api::V1::VotesController < ApplicationController
+class Api::V1::VotesController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :set_review
 
   def create_upvote
     upvote = @review.upvotes.build
     upvote.user = current_user
-
     if upvote.save
-      render json: { upvotes_count: @review.upvotes.count }
+      upvotes = @review.upvotes.count
+      render json: upvotes
     end
   end
 
@@ -16,7 +16,8 @@ class Api::V1::VotesController < ApplicationController
     downvote.user = current_user
 
     if downvote.save
-      render json: { downvotes_count: @review.downvotes.count }
+      downvotes = @review.downvotes.count
+      render json: downvotes
     end
   end
 

@@ -33,35 +33,22 @@ class ReviewsController < ApplicationController
   def create_upvote
     review = Review.find(params[:review_id])
     upvote = Upvote.new(review_id: review.id, user_id: current_user.id)
-
-    # respond_to do |format|
-      if upvote.save
-        redirect_to book_path(review.book)
-    #     format.html { redirect_to book_path(review.book) }
-    #     format.js { render json: { upvotes_count: review.upvotes.count } }
-        # redirect_to book_path(review.book)
-      end
-    # end
+    if upvote.save
+      redirect_to book_path(review.book)
+    end
   end
 
   def create_downvote
     review = Review.find(params[:review_id])
     downvote = Downvote.new(review_id: review.id, user_id: current_user.id)
-
-    # respond_to do |format|
       if downvote.save
         redirect_to book_path(review.book)
-    #     format.html { redirect_to book_path(review.book) }
-    #     format.js { render json: { downvotes_count: review.downvotes.count } }
       end
-    # end
   end
 
   def delete_upvote
     @review = Review.find(params[:review_id])
-    # binding.pry
     @upvote = Upvote.where(user_id: current_user.id).first
-
     @upvote.destroy
     redirect_to book_path(@review.book)
   end
@@ -69,9 +56,14 @@ class ReviewsController < ApplicationController
   def delete_downvote
     @review = Review.find(params[:review_id])
     @downvote = Downvote.where(user_id: current_user.id).first
-
     @downvote.destroy
     redirect_to book_path(@review.book)
+  end
+
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to user_path(current_user)
   end
 
   private

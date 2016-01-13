@@ -14,9 +14,8 @@ require 'rails_helper'
 # =>  been deleted.
 # [x] All books and reviews associated with that user are deleted
 
-feature 'User deletes their existing account' do
-  scenario 'User visits Edit Account page to delete their account',
-  driver: :selenium do
+feature 'User deletes their existing account', js: true do
+  scenario 'User visits Edit Account page to delete their account' do
 
     visit '/'
     click_link 'Sign Up'
@@ -36,8 +35,8 @@ feature 'User deletes their existing account' do
     visit '/users/edit'
     click_button 'Cancel my account'
 
-    popup = page.driver.browser.switch_to.alert
-    popup.accept
+    # Popup that happens here is handled automagically by poltergeist
+
     expect(page).to have_content "Bye! Your account has been successfully
                                   cancelled."
 

@@ -6,29 +6,34 @@ feature 'user can see all reviews left on books', %{
   So that I can see all my reviews
 } do
 
-    # Acceptance Criteria
-    #
-    # [√] I want to see all of my reviews from my profile page
+  # Acceptance Criteria
+  #
+  # [√] I want to see all of my reviews from my profile page
+
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:author) { FactoryGirl.create(:author) }
+  let!(:genre) { FactoryGirl.create(:genre) }
+
+  let!(:book) do
+    FactoryGirl.create(
+      :book,
+      user: user,
+      author: author,
+      genre: genre
+    )
+  end
+
+  let!(:review) { FactoryGirl.create(:review, user: user, book: book) }
 
   scenario 'user sees all reviews from profile page' do
-    user = FactoryGirl.create(:user)
-    author = FactoryGirl.create(:author)
-    genre = FactoryGirl.create(:genre)
-    book = FactoryGirl.create(
-      :book,
-      user_id: user.id,
-      author_id: author.id,
-      genre_id: genre.id)
-    review = FactoryGirl.create(
-      :review,
-      user_id: user.id,
-      book_id: book.id)
+    review = FactoryGirl.create(:review)
+    user = review.user
 
     login_as(user, scope: :user)
-    visit user_path(user.id)
+    visit user_path(user)
 
     expect(page).to have_content("Your reviews:")
-    expect(page).to have_content("Review Title!")
-    expect(page).to have_content("Review Body")
+    expect(page).to have_content(review.title)
+    expect(page).to have_content(review.body)
   end
 end

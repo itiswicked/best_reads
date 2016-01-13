@@ -7,6 +7,8 @@ class Review < ActiveRecord::Base
   validates :body, length: { maximum: 500 }
   validates :rating, presence: true
 
+  paginates_per 20
+
   def full_user_name
     "#{user.first_name.capitalize} #{user.last_name.chars.first.capitalize}"
   end
@@ -17,5 +19,9 @@ class Review < ActiveRecord::Base
 
   def down_voted?(user)
     Downvote.where(user_id: user.id).any?
+  end
+
+  def reviewed_by?(user)
+    where(user_id: user.id, book_id: book.id).any?
   end
 end
