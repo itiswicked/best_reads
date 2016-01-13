@@ -37,20 +37,41 @@ class BooksController < ApplicationController
     end
   end
 
-  # def reviewed?(book)
-  #   Review.where(user_id: current_user.id, book_id: book.id).any?
-  # end
+  def edit
+    @book = Book.find(params[:id])
+    @genres_collection = genres_collection
+  end
+
+  def update
+    @genres_collection = genres_collection
+    @book = Book.find(params[:id])
+    @author = Author.find_by(name: author_params[:author])
+
+    @book.author = @author
+    @user = current_user
+
+    @book.user = @user
+    @book.update(book_params)
+
+    if @book.save
+      redirect_to book_path(@book)
+    else
+      flash[:errors] = @book.errors.full_messages.join(". ")
+      render action: 'new'
+    end
+  end
 
   private
 
   def book_params
-    params.require(:book).permit(:title,
-                                 :description,
-                                 :year,
-                                 :genre_id,
-                                 :author_id,
-                                 :user_id
-                                 )
+    params.require(:book).permit(
+      :title,
+      :description,
+      :year,
+      :genre_id,
+      :author_id,
+      :user_id
+    )
   end
 
   def author_params

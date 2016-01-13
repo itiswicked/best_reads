@@ -1,0 +1,20 @@
+<h1>Edit <%= @book.title %></h1>
+
+<%= form_for(@book) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, placeholder: "Book title", class: "input" %>
+  <br>
+  <%= f.label :description %>
+  <%= f.text_field :description, placeholder: "book description", class: "input" %>
+  <br>
+  <%= f.label :year %>
+  <%= f.text_field :year, placeholder: "Book Publication Year", class: "input" %>
+  <br>
+  <%= f.label :genre_id, "Genres" %>
+  <%= f.select :genre_id, @genres_collection %>
+  <br>
+
+  <%= f.label :author, "Author" %>
+  <%= f.text_field :author, value: @book.author.name, class: "input" %>
+  <%= f.submit "Edit Book", class: "submit" %>
+<% end %>
