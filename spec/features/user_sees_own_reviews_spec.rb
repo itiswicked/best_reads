@@ -13,17 +13,17 @@ feature 'user can see all reviews left on books', %{
   let!(:user) { FactoryGirl.create(:user) }
   let!(:author) { FactoryGirl.create(:author) }
   let!(:genre) { FactoryGirl.create(:genre) }
-  let!(:book) do FactoryGirl.create(
-    :book,
-    user_id: user.id,
-    author_id: author.id,
-    genre_id: genre.id)
+
+  let!(:book) do
+    FactoryGirl.create(
+      :book,
+      user: user,
+      author: author,
+      genre: genre
+    )
   end
-  let!(:review) do FactoryGirl.create(
-    :review,
-    user_id: user.id,
-    book_id: book.id)
-  end
+
+  let!(:review) { FactoryGirl.create(:review, user: user, book: book) }
 
   scenario 'user sees all reviews from profile page' do
     review = FactoryGirl.create(:review)
