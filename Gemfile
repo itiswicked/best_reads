@@ -17,6 +17,11 @@ gem 'foundation-rails'
 gem 'kaminari'
 gem 'pg_search'
 
+gem 'carrierwave'
+gem 'fog'
+gem 'fog-aws'
+
+
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
@@ -30,6 +35,7 @@ group :development, :test do
   gem 'factory_girl'
   gem 'valid_attribute'
   gem 'shoulda-matchers', require: false
+  gem "dotenv-rails"
 end
 
 group :test do
