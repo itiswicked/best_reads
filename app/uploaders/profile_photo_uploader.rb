@@ -1,8 +1,4 @@
 class ProfilePhotoUploader < CarrierWave::Uploader::Base
-<<<<<<< HEAD
-  
-=======
->>>>>>> master
   if Rails.env.test?
     storage :file
   else
