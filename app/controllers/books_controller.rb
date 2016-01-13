@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  helper_method :reviewed?
+
   def index
     @books = Book.order(:title).page params[:page]
   end
@@ -34,6 +36,10 @@ class BooksController < ApplicationController
       render :new
     end
   end
+
+  # def reviewed?(book)
+  #   Review.where(user_id: current_user.id, book_id: book.id).any?
+  # end
 
   private
 
