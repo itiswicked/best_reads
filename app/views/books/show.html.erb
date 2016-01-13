@@ -19,6 +19,10 @@
   </h5>
 </p>
 
+<% if current_user == @book.user %>
+  <%= link_to 'Edit Book', edit_book_path %>
+<% end %>
+
 Reviews for <%= @book.title %>:
 <ul>
 <% @reviews.each do |review|%>
