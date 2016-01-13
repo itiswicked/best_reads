@@ -13,11 +13,11 @@ feature "users can add books" do
     Genre.create(genre_name: "TragiComedy")
   end
 
-  let!(:author) {
+  let!(:author) do
     Author.new(name: "Matthew Lewis")
-  }
+  end
 
-  let!(:book_1) {
+  let!(:book_1) do
     FactoryGirl.create(
       :book,
       id: '1',
@@ -27,7 +27,7 @@ feature "users can add books" do
       year: "1796",
       genre_id: "5"
     )
-   }
+  end
 
   scenario "user updates book successfully" do
     user = FactoryGirl.create(:user)
