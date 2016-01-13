@@ -17,11 +17,8 @@
     <%= f.label :genre_id, "Genres" %>
     <%= f.select :genre_id, @genres_collection %>
     <br>
-
-    <%= f.fields_for :author do |field| %>
-      <%= f.label :author, "Author" %>
-      <%= f.text_field :author, placeholder: "Author Name", class: "input" %>
-    <% end %>
+    <%= f.label :author, "Author" %>
+    <%= f.text_field :author, placeholder: "Author Name", class: "input" %>
     <%= f.submit "Add Book", class: "submit" %>
   <% end %>
 </div>
