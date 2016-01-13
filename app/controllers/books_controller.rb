@@ -17,13 +17,9 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @genres_collection = genres_collection
-
     @author = Author.find_or_create_by(name: author_params[:author])
-
     @book.author = @author
-
     @user = current_user
-
     @book.user = @user
 
     if @book.save
