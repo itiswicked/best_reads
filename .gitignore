@@ -17,4 +17,6 @@
 /coverage
 
 # Ignore uploaded files in test/development
+/public/uploads/temp
+/public/uploads/user
 /public/uploads
