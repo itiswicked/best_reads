@@ -26,12 +26,14 @@ feature 'user can see all reviews left on books', %{
   end
 
   scenario 'user sees all reviews from profile page' do
+    review = FactoryGirl.create(:review)
+    user = review.user
 
     login_as(user, scope: :user)
-    visit user_path(user.id)
+    visit user_path(user)
 
     expect(page).to have_content("Your reviews:")
-    expect(page).to have_content("Review Title!")
-    expect(page).to have_content("Review Body")
+    expect(page).to have_content(review.title)
+    expect(page).to have_content(review.body)
   end
 end

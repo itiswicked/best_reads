@@ -1,10 +1,7 @@
 require 'rails_helper'
 
 feature 'users views profiles' do
-  let!(:user) do
-    user = FactoryGirl.create(:user)
-    user
-  end
+  let!(:user) { FactoryGirl.create(:user) }
 
   scenario 'logged in and views own profile' do
     login_as(user, scope: :user)
@@ -17,9 +14,8 @@ feature 'users views profiles' do
   end
 
   scenario 'logged in and views other user\'s profile' do
-    login_as(user, scope: :user)
-    visit user_path(user)
     user2 = FactoryGirl.create(:user)
+    login_as(user, scope: :user)
     visit user_path(user2)
 
     expect(page).to_not have_content 'Edit Profile'

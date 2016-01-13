@@ -14,4 +14,6 @@ class Book < ActiveRecord::Base
   def reviewed?(user)
     Review.where(user_id: user.id, book_id: id).any?
   end
+  
+  paginates_per 20
 end

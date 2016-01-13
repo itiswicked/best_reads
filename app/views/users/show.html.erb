@@ -3,8 +3,7 @@
 <%= link_to "Upload profile photo", "#" %>
 <% end %>
 
-<br><%= image_tag '#' %>
-
+<%= image_tag @user.profile_photo %>
 
 <p>First Name: <%= @user.first_name %> </p>
 <p>Last Name: <%= @user.last_name %> </p>
