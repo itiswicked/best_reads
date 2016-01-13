@@ -10,9 +10,19 @@ Rails.application.routes.draw do
   end
 
   resources :books do
-    resources :reviews do
-      post 'upvote', to: 'reviews#create_upvote'
-      post 'downvote', to: 'reviews#create_downvote'
+    resources :reviews
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :reviews, only: [] do
+        scope :votes, only: [:create_upvote, :create_downvote, :delete_upvote, :delete_downvote] do
+          post 'upvote', to: 'votes#create_upvote'
+          post 'downvote', to: 'votes#create_downvote'
+          delete 'upvote', to: 'votes#delete_upvote'
+          delete 'downvote', to: 'votes#delete_downvote'
+        end
+      end
     end
   end
 end

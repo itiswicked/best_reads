@@ -10,4 +10,12 @@ class Review < ActiveRecord::Base
   def full_user_name
     "#{user.first_name.capitalize} #{user.last_name.chars.first.capitalize}"
   end
+
+  def up_voted?(user)
+    Upvote.where(user_id: user.id).any?
+  end
+
+  def down_voted?(user)
+    Downvote.where(user_id: user.id).any?
+  end
 end

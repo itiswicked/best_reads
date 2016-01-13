@@ -31,16 +31,24 @@ Reviews for <%= @book.title %>:
 <ul>
 <% @reviews.each do |review|%>
   <li>
-    <div class='review-upvotes'>
-      <%= link_to "Upvote This Review", book_review_upvote_path(@book, review), data: { review_id: review.id }, remote: true, method: :post %><br>
-    </div>
+    <a class="review-upvotes">
+      <%= link_to "Upvote This Review", api_v1_review_upvote_path(review), method: :post, data: { review_id: "#{review.id}"}, remote: true %>
+      <span class="upvote-count">
+        <%= review.upvotes.count %>
+      </span>
+    </a><br>
+    <a class="review-downvotes">
+      <%= link_to "Downvote This Review", api_v1_review_downvote_path(review), method: :post, data: { review_id: "#{review.id}"}, remote: true %>
+      <span class="downvote-count">
+        <%= review.downvotes.count %>
+      </span>
+    </a>
 
-    <div class='review-downvotes'>
-      <%= link_to "Downvote This Review", book_review_downvote_path(@book, review), data: { review_id: review.id }, remote: true, method: :post %><br>
-    </div>
-
-    Upvote: <%=review.upvotes.count %><br>
-    Downvotes: <%=review.downvotes.count %><br>
+    <% if review.up_voted?(current_user)%>
+      <%= link_to "Undo Upvote", api_v1_review_upvote_path(review), method: :delete %><br>
+    <% elsif review.down_voted?(current_user)%>
+      <%= link_to "Undo Downvote", api_v1_review_downvote_path(review), method: :delete %><br>
+    <% end %>
 
     <h3><%= review.title %></h3>
     <%= review.full_user_name %><br>
