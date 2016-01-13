@@ -1,9 +1,11 @@
 class Book < ActiveRecord::Base
   include PgSearch
-  multisearchable against: [
-    :title,
-    :description
-  ]
+  pg_search_scope :search_by_book_name,
+  against: :title, using: {
+    tsearch: {
+      prefix: true
+    }
+  }
 
   belongs_to :author
   belongs_to :user

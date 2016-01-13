@@ -12,4 +12,9 @@ Rails.application.routes.draw do
   resources :authors, except: [:destroy] do
     resources :books
   end
+
+  resources :results, only: [:index]
+
+  get '/search' => 'search#index'
+
 end
