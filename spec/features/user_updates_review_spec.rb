@@ -66,8 +66,7 @@ feature 'user updates review' do
 
   scenario 'but not others reviews' do
     visit book_path(users_review.book)
-#     binding.pry
-# save_and_open_page
+
     others_review_elem = page.find('li', text: other_review.title)
     expect(others_review_elem).to_not have_content 'Edit'
   end
