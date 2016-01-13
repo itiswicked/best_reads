@@ -6,7 +6,7 @@
 
     <title>Best Reads</title>
 
-    <%= stylesheet_link_tag    "application" %>
+    <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
@@ -30,10 +30,7 @@
      <p class="alert alert-danger"><%= alert %></p>
     <% end %>
 
-    <div class="row">
-    <div class="small-9 column">
-      <%= yield %>
-    </div>
+    <%= yield %>
   </div>
 
   </body>

@@ -13,7 +13,6 @@
  *= require_tree .
  *= require_self
  *= require foundation_and_overrides
-
  */
 
  .top-bar {
@@ -22,4 +21,23 @@
 
  .name {
    display: inline;
+ }
+
+ .book {
+  padding: 0;
+  height: 240px;
+  text-align: center;
+  h4 {
+    margin-top: 2em;
+  }
+ }
+
+ .dashed {
+   border: 2px dashed gray;
+   height: 93%;
+   width: 93%;
+ }
+
+ .book-button {
+  font-size: 1em;
  }
