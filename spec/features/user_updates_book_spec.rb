@@ -13,18 +13,20 @@ feature "users can add books" do
     Genre.create(genre_name: "TragiComedy")
   end
 
-  let!(:author) { Author.new(name: "Matthew Lewis") }
+  let!(:author) {
+    Author.new(name: "Matthew Lewis")
+  }
 
   let!(:book_1) {
     FactoryGirl.create(
-    :book,
-    id: '1',
-    title: "The Monk",
-     author: author,
-     description: "A crazy monk goes on a sex crazed rampage. Sells soul to satan",
-     year: "1796",
-     genre_id: "5"
-     )
+      :book,
+      id: '1',
+      title: "The Monk",
+      author: author,
+      description: "A crazy monk goes on a sex crazed rampage. Sells soul to satan",
+      year: "1796",
+      genre_id: "5"
+    )
    }
 
   scenario "user updates book successfully" do
