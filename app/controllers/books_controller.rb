@@ -17,7 +17,6 @@ class BooksController < ApplicationController
   end
 
   def create
-    binding.pry
     @book = Book.new(book_params)
     @genres_collection = genres_collection
     @author = Author.find_or_create_by(name: author_params[:author])
