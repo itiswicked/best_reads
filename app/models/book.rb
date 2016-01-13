@@ -20,5 +20,9 @@ class Book < ActiveRecord::Base
   validates :description, presence: true
   validates :year, presence: true, numericality: true
 
+  def reviewed?(user)
+    Review.where(user_id: user.id, book_id: id).any?
+  end
+
   paginates_per 20
 end

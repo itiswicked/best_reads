@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  helper_method :reviewed?
+
   def index
     @books = Book.order(:title).page params[:page]
   end
