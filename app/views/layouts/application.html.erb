@@ -1,39 +1,40 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>BestReads</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<nav>
-  <ul>
-    <% if user_signed_in? %>
-      <%= link_to "Add New Book", new_book_path %>
-      <%= link_to "View All Books", books_path %>
-      <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %><br>
-    <% else %>
-      <li><%= link_to "Sign In", new_user_session_path %>
-      <li><%= link_to "Sign Up", new_user_registration_path %></li>
+    <title>Best Reads</title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+
+  <%= render 'shared/navigation' %>
+
+  <div class="row">
+    <% flash.each do |name, msg| %>
+      <% if msg.is_a?(String) %>
+        <%= content_tag :div, msg, class: "alert-box #{name} radius" %>
+      <% end %>
     <% end %>
-  </ul>
-</nav>
-  <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-      <%= value %>
+  </div>
+
+    <% if notice %>
+     <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+     <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+
+    <div class="row">
+    <div class="small-9 column">
+      <%= yield %>
     </div>
-  <%- end -%>
+  </div>
 
-  <% if notice %>
-   <p class="alert alert-success"><%= notice %></p>
-  <% end %>
-  <% if alert %>
-   <p class="alert alert-danger"><%= alert %></p>
-  <% end %>
-
-<%= yield %>
-
-</body>
+  </body>
 </html>
