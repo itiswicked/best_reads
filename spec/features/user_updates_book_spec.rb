@@ -13,8 +13,19 @@ feature "users can add books" do
     Genre.create(genre_name: "TragiComedy")
   end
 
-  let!(:author) {Author.new(name: "Matthew Lewis")}
-  let!(:book_1) { FactoryGirl.create(:book, id: '1', title: "The Monk", author: author, description: "A crazy monk goes on a sex crazed rampage. Sells soul to satan", year: "1796", genre_id: "5") }
+  let!(:author) { Author.new(name: "Matthew Lewis") }
+
+  let!(:book_1) {
+    FactoryGirl.create(
+    :book,
+    id: '1',
+    title: "The Monk",
+     author: author,
+     description: "A crazy monk goes on a sex crazed rampage. Sells soul to satan",
+     year: "1796",
+     genre_id: "5"
+     )
+   }
 
   scenario "user updates book successfully" do
     user = FactoryGirl.create(:user)
@@ -29,7 +40,7 @@ feature "users can add books" do
 
     fill_in 'Title', with: "The Monk"
     fill_in 'Author', with: "Matthew Lewis"
-    fill_in 'Description', with: "A crazy monk goes on a sex crazed rampage. Sells soul to satan"
+    fill_in 'Description', with: "A crazy monk sells soul to satan"
     fill_in 'Year', with: "1796"
     select 'Satire', from: "Genres"
 
