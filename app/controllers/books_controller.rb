@@ -20,19 +20,22 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @genres_collection = genres_collection
-
     @author = Author.find_or_create_by(name: author_params[:author])
-
     @book.author = @author
-
     @user = current_user
-
     @book.user = @user
 
     if @book.save
       flash[:success] = "Book added successfully!"
       redirect_to books_path
+    elsif @book.author.id == nil
+      @book.author = nil
+      flash[:warning] = "#{@author.errors.messages.values.to_s.
+                          gsub(/[^0-9a-z ]/i, '')}, " +
+                        @book.errors.full_messages.join(', ')
+      render :new
     else
+      @author = @author.name
       flash[:warning] = @book.errors.full_messages.join(', ')
       render :new
     end
