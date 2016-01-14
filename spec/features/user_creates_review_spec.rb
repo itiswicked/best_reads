@@ -20,7 +20,7 @@ feature 'user creates book review' do
     login_as(book.user, scope: :user)
 
     visit books_path
-    click_link book.title
+    click_link 'View'
     click_link 'Add Review'
 
     fill_in 'Title', with: 'Good book I guess'
@@ -36,7 +36,7 @@ feature 'user creates book review' do
     login_as(book.user, scope: :user)
 
     visit books_path
-    click_link book.title
+    click_link 'View'
     click_link 'Add Review'
 
     click_button 'Add Review'
@@ -46,7 +46,7 @@ feature 'user creates book review' do
 
   scenario 'an unauthenticated user cannot create a review' do
     visit books_path
-    click_link book.title
+    click_link 'View'
 
     expect(page).to_not have_content('Add Review')
     expect(page).to have_content('Sign in to add a review!')
@@ -56,7 +56,7 @@ feature 'user creates book review' do
     login_as(book.user, scope: :user)
 
     visit books_path
-    click_link book.title
+    click_link 'View'
     click_link 'Add Review'
 
     fill_in 'Title', with: 'Good book I guess'

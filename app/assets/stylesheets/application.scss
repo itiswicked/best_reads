@@ -15,40 +15,29 @@
  *= require foundation_and_overrides
  */
 
- .top-bar {
+.top-bar {
    margin-bottom: 30px;
- }
+}
 
- .name {
+.name {
    display: inline;
- }
+}
 
- .book {
+.book {
   padding: 0;
   height: 240px;
   text-align: center;
   h4 {
     margin-top: 2em;
   }
- }
+}
 
-
- .dashed {
+.dashed {
    border: 2px dashed gray;
    height: 93%;
    width: 93%;
- }
+}
 
- .box a {
-   display: block;
-   width: 100%;
-   height: 100%;
- }
-
- .book-button {
+.book-button {
   font-size: 1em;
- }
-
- .dashed {
-   background-color: red;
- }
+}

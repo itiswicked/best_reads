@@ -22,9 +22,9 @@
 <% if current_user == @book.user %>
   <%= link_to 'Edit Book', edit_book_path %>
 <% end%>
-<% binding.pry %>
+
 <% if user_signed_in? %>
-    <% unless @book.reviewed?(current_user) %>
+    <% if !@book.reviewed?(current_user) %>
       <%= link_to 'Add Review', new_book_review_path(@book) %>
     <% end %>
 <% else %>
