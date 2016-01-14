@@ -30,12 +30,15 @@
      <p class="alert alert-danger"><%= alert %></p>
     <% end %>
 
-  <%= form_tag("/search", method: "get") do %>
-    <%= text_field_tag :query,
-        params[:query],
-        placeholder: "Search" %>
-    <%= submit_tag "Search", name: nil %>
-  <% end %>
+
+    <div class="text-right">
+      <%= form_tag("/search", method: "get") do %>
+      <%= text_field_tag :query,
+          params[:query],
+          placeholder: "Search" %>
+      <%= submit_tag "Search", name: nil %>
+      <% end %>
+    </div>
 
 <%= yield %>
 
