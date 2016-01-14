@@ -14,11 +14,11 @@ class Review < ActiveRecord::Base
   end
 
   def up_voted?(user)
-    Upvote.where(user_id: user.id).any?
+    Upvote.where(user_id: user.id, review_id: id).any?
   end
 
   def down_voted?(user)
-    Downvote.where(user_id: user.id).any?
+    Downvote.where(user_id: user.id, review_id: id).any?
   end
 
   def reviewed_by?(user)

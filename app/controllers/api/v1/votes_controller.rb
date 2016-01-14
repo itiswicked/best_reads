@@ -22,14 +22,14 @@ class Api::V1::VotesController < ActionController::Base
   end
 
   def delete_upvote
-    upvote = Upvote.where(user_id: current_user.id).first
+    upvote = Upvote.where(user_id: current_user.id, review_id: @review.id).first
 
     upvote.destroy
     redirect_to book_path(@review.book)
   end
 
   def delete_downvote
-    downvote = Downvote.where(user_id: current_user.id).first
+    downvote = Downvote.where(user_id: current_user.id, review_id: @review.id).first
 
     downvote.destroy
     redirect_to book_path(@review.book)
