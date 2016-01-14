@@ -2,12 +2,8 @@
   <div class="box">
   <a href="<%=book_path(book)%>">
     <div class="dashed">
-      <h4><%= book.title %></h4>
-      <span>
-      </span>
-      <span>does this become a link?</span>
-      <br>
+      <h4><%= link_to book.title %></h4>
+      <%= link_to 'View', book_path(book), class: 'book-button button radius medium' %><br>
     </div>
   </a>
-</div>
 </div>

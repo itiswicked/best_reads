@@ -56,7 +56,6 @@ feature 'user updates review' do
     expect_fields_autopopulated
     fill_in_form
 
-    # Redirect to user's profile page
     expect(page).to have_content "Hello #{users_review.user.first_name}!"
   end
 

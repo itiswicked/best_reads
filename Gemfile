@@ -15,9 +15,12 @@ gem 'coveralls', require: false
 
 gem 'foundation-rails'
 gem 'kaminari'
+gem 'pg_search'
+
 gem 'carrierwave'
 gem 'fog'
 gem 'fog-aws'
+
 
 group :development do
   gem 'web-console', '~> 2.0'
