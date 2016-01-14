@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 feature 'user updates review' do
   # As a user
   # I want to be able to update my own reviews
@@ -42,7 +41,7 @@ feature 'user updates review' do
     click_button 'Edit'
     expect_fields_autopopulated
     fill_in_and_submit_form
-    
+
     expect(page.current_path).to eq "/users/#{users_review.user.id}"
   end
 
