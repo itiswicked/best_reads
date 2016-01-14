@@ -27,32 +27,36 @@
   </h5>
 </p>
 
+<% if current_user == @book.user %>
+  <%= link_to 'Edit Book', edit_book_path %><br>
+<% end%>
+
 Reviews for <%= @book.title %>:
 <ul>
 <% @reviews.each do |review|%>
-  <li>
-    <% if !review.up_voted?(current_user) && !review.down_voted?(current_user)%>
-      <%= link_to "Upvote This Review", api_v1_review_upvote_path(review), class: "review-upvotes", method: :post, data: { review_id: "#{review.id}"}, remote: true %>
-      <br>
-      <%= link_to "Downvote This Review", api_v1_review_downvote_path(review), class: "review-upvotes", method: :post, data: { review_id: "#{review.id}"}, remote: true %>
-    <% elsif review.up_voted?(current_user)%>
-      <%= link_to "Undo Upvote", api_v1_review_upvote_path(review), method: :delete %><br>
-    <% elsif review.down_voted?(current_user)%>
-      <%= link_to "Undo Downvote", api_v1_review_downvote_path(review), method: :delete %><br>
-    <% end %>
-    <p class="upvote-count">
-      Upvotes: <%= review.upvotes.count %>
-    </p>
-    <p class="downvote-count">
-      Downvotes: <%= review.downvotes.count %>
-    </p>
+<div class="review-container">
+  <div class="voting">
+    <li> <%= link_to "Upvote", api_v1_review_upvote_path(review), class: "review-upvotes", method: :post, data: { review_id: review.id }, remote: true %> </li><br>
 
+    <div id="upvote-count">
+      <li>Upvotes: <%= review.upvotes.count %></li>
+    </div><br>
+
+    <li> <%= link_to "Downvote", api_v1_review_downvote_path(review), class: "review-upvotes", method: :post, data: { review_id: "#{review.id}"}, remote: true %> </li><br>
+
+    <div id="downvote-count">
+      Downvotes: <%= review.downvotes.count %>
+    </div><br>
+  </div>
+
+  <li>
     <h3><%= review.title %></h3>
     <%= review.full_user_name %><br>
     Rating: <%= review.rating %> <br>
     <%= review.body %> <br>
     Reviewed on:  <%= review.created_at.strftime("%B %d, %Y") %>
   </li><br>
+</div>
 <% end %>
 </ul>
 
