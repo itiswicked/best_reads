@@ -42,7 +42,7 @@ feature "users can add books" do
     visit new_book_path
 
     click_button "Add Book"
-    expect(page).to have_content "Author name can't be blank,
+    expect(page).to have_content "Author cannot be blank,
     Title can't be blank, Description can't be blank,
     Year can't be blank, Year is not a number"
   end
