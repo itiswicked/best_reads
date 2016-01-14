@@ -1,11 +1,12 @@
 <li>
-  <h3><%= review.title %></h3>
-  <% if review.user == current_user %>
-    <%= link_to "Edit", [:edit, review.book, review]  %>
+  <% if params[:controller] == "users" %>
+    Review for <%= link_to review.book.title, book_path(review.book) %>:<br>
   <% end %>
-  Votes: <%= review.votes %><br>
-  <%= review.full_user_name %><br>
-  Rating: <%= review.rating %> <br>
-  <%= review.body %><br>
-  Reviewed on:  <%= review.created_at.strftime("%B %d, %Y") %>
-</li>
+  Rating: <%= review.rating %><br>
+  <%= review.title %>
+  <%= review.body %>
+  <% if review.user == current_user %>
+    <%= link_to 'Edit', edit_review_path(review) %>
+    <%= button_to "Delete This Review", { controller: "reviews", action: :destroy, id: review.id }, data: { confirm: "Are you sure?" }, method: :delete %>
+  <% end %>
+</li><br>

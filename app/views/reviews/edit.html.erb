@@ -1,7 +1,7 @@
 <div class="wrapper">
   <h1 class="title">New Review Form</h1>
 
-  <%= form_for([@book, @review]) do |f| %>
+  <%= form_for @review do |f| %>
     <%= f.label :title, 'Title' %><br>
     <%= f.text_field :title %><br>
 
@@ -12,6 +12,6 @@
     <%= f.select :rating, @ratings_collection, prompt: "Select Rating" %>
     <br>
     <br>
-    <%= f.submit "Add Review" %>
+    <%= f.submit "Update Review" %>
   <% end %>
 </div>

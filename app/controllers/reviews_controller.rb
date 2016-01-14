@@ -31,9 +31,7 @@ class ReviewsController < ApplicationController
   def edit
     session[:return_to] ||= request.referer
     @review = Review.find(params[:id])
-    @book = @review.book
     @ratings_collection = RATINGS
-    render :new
   end
 
   def update
@@ -44,6 +42,12 @@ class ReviewsController < ApplicationController
     else
       create_or_update_failure
     end
+  end
+
+  def destroy
+    @review = Review.find(params[:id])
+    @review.destroy
+    redirect_to user_path(current_user)
   end
 
   private

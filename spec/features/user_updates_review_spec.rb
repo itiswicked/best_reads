@@ -19,9 +19,7 @@ feature 'user updates review' do
   let!(:users_review) { FactoryGirl.create(:review) }
   let!(:other_review) { FactoryGirl.create(:review, book: users_review.book) }
 
-  before(:each) do
-    login_as(users_review.user, scope: :user)
-  end
+  before(:each) { login_as(users_review.user, scope: :user) }
 
   def expect_fields_autopopulated
     expect(find_field('Title').value).to eq users_review.title
@@ -31,9 +29,9 @@ feature 'user updates review' do
   def fill_in_form
     fill_in 'Title', with: 'I hated it so much'
     fill_in 'Review',
-             with: 'So much that flames were coming out the sides of my face'
+            with: 'So much that flames were coming out the sides of my face'
     select '4', from: 'Rating'
-    click_button 'Add Review'
+    click_button 'Update Review'
   end
 
   scenario 'accesses from book\'s show page' do
