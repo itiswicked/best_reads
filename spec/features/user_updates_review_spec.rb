@@ -41,13 +41,11 @@ feature 'user updates review' do
     expect(page).to have_content other_review.title
 
     users_review_elem = page.find('li', text: users_review.title)
-    # expect(users_review_elem).to have_content 'Edit'
 
     click_button 'Edit'
     expect_fields_autopopulated
     fill_in_form
-
-    # Redirect to book's show page
+save_and_open_page
     expect(page).to have_content users_review.book.title
   end
 
