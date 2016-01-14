@@ -32,12 +32,23 @@
   }
  }
 
+
  .dashed {
    border: 2px dashed gray;
    height: 93%;
    width: 93%;
  }
 
+ .box a {
+   display: block;
+   width: 100%;
+   height: 100%;
+ }
+
  .book-button {
   font-size: 1em;
+ }
+
+ .dashed {
+   background-color: red;
  }
