@@ -6,7 +6,6 @@
   <%= review.title %>
   <%= review.body %>
   <% if review.user == current_user %>
-    <%= link_to 'Edit', edit_review_path(review) %>
-    <%= button_to "Delete This Review", { controller: "reviews", action: :destroy, id: review.id }, data: { confirm: "Are you sure?" }, method: :delete %>
+    <%= button_to 'Edit', edit_review_path(review), method: :get %>
+    <%= button_to 'Delete', { controller: "reviews", action: :destroy, id: review.id }, data: { confirm: "Are you sure?" }, method: :delete %>
   <% end %>
-</li><br>
