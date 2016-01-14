@@ -16,16 +16,5 @@
   <%= @user.first_name %>'s Reviews:
 <% end %>
 <ul>
-  <% @user.reviews.each do |review| %>
-    <li>
-      Review for <%= link_to review.book.title, book_path(review.book) %>:<br>
-      Rating: <%= review.rating %><br>
-      <%= review.title %>
-      <%= review.body %>
-
-      <% if @user == current_user %>
-        <%= button_to "Delete This Review", { controller: "reviews", action: :destroy, id: review.id }, data: { confirm: "Are you sure?" }, method: :delete %>
-      <% end %>
-    </li><br>
-  <% end %>
+  <%= render partial: 'layouts/review', collection: @reviews %>
 </ul>

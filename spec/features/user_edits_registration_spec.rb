@@ -7,7 +7,7 @@ require 'rails_helper'
 # Acceptance Criteria:
 #
 # [x] The form to be edited should be pre-populated with user's existing
-# =>  information.
+#     information.
 # [x] A user should be able to edit their first name
 # [x] A user should be able to edit their last name
 # [x] A user should be able to edit their email

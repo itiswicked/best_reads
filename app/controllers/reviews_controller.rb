@@ -20,14 +20,28 @@ class ReviewsController < ApplicationController
     if Review.where(user_id: @user.id, book_id: @book.id).any?
       flash[:notice] = "You've already written a review for this book."
       redirect_to book_path(@book)
-
     elsif @review.save
       flash[:success] = "Review added successfully!"
       redirect_to book_path(@book)
       ReviewMailer.new_review(@review).deliver_later
     else
-      flash[:warning] = @review.errors.full_messages.join(', ')
-      render :new
+      create_or_update_failure
+    end
+  end
+
+  def edit
+    session[:return_to] ||= request.referer
+    @review = Review.find(params[:id])
+    @ratings_collection = RATINGS
+  end
+
+  def update
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      flash[:success] = "Review udpated successfully!"
+      redirect_to session[:return_to]
+    else
+      create_or_update_failure
     end
   end
 
@@ -40,11 +54,17 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:title,
-                                   :body,
-                                   :rating,
-                                   :user_id
-                                  )
+    params.require(:review).permit(
+      :title,
+      :body,
+      :rating,
+      :user_id
+    )
+  end
+
+  def create_or_update_failure
+    flash[:warning] = @review.errors.full_messages.join(', ')
+    render :new
   end
 
   def authorize_user
