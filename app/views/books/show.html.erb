@@ -15,7 +15,7 @@
   <%= @book.description %>
   <br><br>
     Added by:<br>
-   <%= @book.user.first_name %>
+   <%= button_to @book.user.first_name, @book.user, class: 'button' %>
   </h5>
 </p>
 
@@ -23,12 +23,10 @@
   <%= link_to 'Edit Book', edit_book_path %>
 <% end%>
 
-<% if user_signed_in? %>
-    <% if !@book.reviewed?(current_user) %>
-      <%= link_to 'Add Review', new_book_review_path(@book) %>
-    <% end %>
+<% if user_signed_in? && !@book.reviewed?(current_user) %>
+  <%= button_to "Add Review", new_book_review_path(@book), class: 'button' %>
 <% else %>
-  <p>Sign in to add a review!</p>
+  <span>Sign in to add a review!</span>
 <% end %>
 
 Reviews for <%= @book.title %>:
