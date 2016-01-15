@@ -12,8 +12,8 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-
-  <%= render 'shared/navigation' %>
+  <div class="page-wrapper">
+    <%= render 'shared/navigation' %>
 
   <div class="row">
     <% flash.each do |name, msg| %>
@@ -23,16 +23,16 @@
     <% end %>
   </div>
 
-  <div id="search-bar" class="right">
-    <%= form_tag("/search", method: "get") do %>
-    <%= text_field_tag :query,
-        params[:query],
-        placeholder: "Search" %>
-    <%= submit_tag "Search", name: nil, class: "submit" %>
-    <% end %>
-  </div>
+    <div id="search-bar" class="right">
+      <%= form_tag("/search", method: "get") do %>
+      <%= text_field_tag :query,
+          params[:query],
+          placeholder: "Search" %>
+      <%= submit_tag "Search", name: nil, class: "submit" %>
+      <% end %>
+    </div>
 
-<%= yield %>
-
+    <%= yield %>
+    </div>
   </body>
 </html>
