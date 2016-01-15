@@ -4,5 +4,5 @@ class Vote < ActiveRecord::Base
 
   validates :review, presence: true, uniqueness: { scope: :user }
   validates :user, presence: true, uniqueness: { scope: :review }
-  validates :vote, inclusion: { in: -1..1 }
+  validates :vote, numericality: true, inclusion: { in: -1..1 }
 end
