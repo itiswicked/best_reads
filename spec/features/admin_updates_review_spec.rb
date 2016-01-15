@@ -9,7 +9,7 @@ feature 'admin updates or deletes review' do
   #
   # [ ] A user flagged as an admin will have the admin privilege of editing/
   # =>  deleting any review
-  
+
   let!(:user) { FactoryGirl.create(:user, role: 'admin') }
   let!(:users_review) { FactoryGirl.create(:review) }
   let!(:other_review) { FactoryGirl.create(:review, book: users_review.book) }
