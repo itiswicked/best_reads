@@ -16,11 +16,7 @@ when somebody posts a review on a book I've submitted
     user = FactoryGirl.create(:user)
     genre = FactoryGirl.create(:genre)
     author = FactoryGirl.create(:author)
-    book = FactoryGirl.create(
-      :book,
-      author_id: author.id,
-      user_id: user.id,
-      genre_id: genre.id)
+    book = FactoryGirl.create(:book, author: author, user: user, genre: genre)
 
     login_as(user, scope: :user)
 
