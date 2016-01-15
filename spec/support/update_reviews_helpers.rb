@@ -6,7 +6,7 @@ module UpdateReviewsHelpers
     expect(review).to eq users_review.body
   end
 
-  def fill_in_update_reviews_form
+  def fill_in_and_submit_form
     fill_in 'Title', with: 'I hated it so much'
     fill_in(
       'Review',

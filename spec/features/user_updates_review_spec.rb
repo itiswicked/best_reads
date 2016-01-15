@@ -6,14 +6,14 @@ feature 'user updates review' do
   # because my original opinion was bad and I should feel bad
   #
   # Acceptance Criteria:
-  # [ ] User should be able to update any review from their profile page as
+  # [x] User should be able to update any review from their profile page as
   #     described below.
-  # [ ] When viewing my own review on a book's show page, there should be an
+  # [x] When viewing my own review on a book's show page, there should be an
   #     edit button next to that review only.
-  # [ ] The button leads to the review's show page, with pre-populated data.
-  # [ ] Upon successful form submission, A user is redirected to the book's show
+  # [x] The button leads to the review's show page, with pre-populated data.
+  # [x] Upon successful form submission, A user is redirected to the book's show
   #     page, with the message "Review updated successfully!"
-  # [ ] Upon unsuccessful form submission, the edit page is re-rendered with the
+  # [x] Upon unsuccessful form submission, the edit page is re-rendered with the
   #     appropriate errors.
 
   let!(:users_review) { FactoryGirl.create(:review) }
@@ -21,6 +21,7 @@ feature 'user updates review' do
 
   include UpdateReviewsHelpers
   before(:each) { login_as(users_review.user, scope: :user) }
+  include UpdateReviewsHelpers
 
   scenario 'accesses from book\'s show page' do
     visit book_path(users_review.book)
@@ -30,9 +31,10 @@ feature 'user updates review' do
 
     click_button 'Edit'
     expect_fields_autopopulated
-    fill_in_update_reviews_form
+    fill_in_and_submit_form
 
-    expect(page).to have_content users_review.book.title
+
+    expect(page.current_path).to eq "/books/#{users_review.book.id}"
   end
 
   scenario 'accesses from their profile page' do
@@ -40,9 +42,10 @@ feature 'user updates review' do
 
     click_button 'Edit'
     expect_fields_autopopulated
-    fill_in_update_reviews_form
+    fill_in_and_submit_form
 
-    expect(page).to have_content "Hello #{users_review.user.first_name}!"
+
+    expect(page.current_path).to eq "/users/#{users_review.user.id}"
   end
 
   scenario 'but not others reviews' do
