@@ -43,7 +43,7 @@ feature 'user updates review' do
     expect(page).to have_content users_review.title
     expect(page).to have_content other_review.title
 
-    click_button 'Edit'
+    click_link 'Edit'
     expect_fields_autopopulated
     fill_in_form
 
@@ -53,7 +53,7 @@ feature 'user updates review' do
   scenario 'accesses from their profile page' do
     visit user_path(users_review.user)
 
-    click_button 'Edit'
+    click_link 'Edit'
     expect_fields_autopopulated
     fill_in_form
 

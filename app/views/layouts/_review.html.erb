@@ -17,8 +17,8 @@
   <%= review.body %>
   <% if !(current_user == nil) %>
     <% if review.user == current_user || current_user.admin? %>
-      <%= button_to 'Edit', edit_review_path(review), method: :get %>
-        <%= button_to 'Delete', { controller: "reviews", action: :destroy, id: review.id }, data: { confirm: "Are you sure?" }, method: :delete %>
+      <%= link_to 'Edit', edit_review_path(review), class: 'button small' %>
+      <%= button_to 'Delete', { controller: "reviews", action: :destroy, id: review.id }, data: { confirm: "Are you sure?" }, method: :delete %>
     <% end %>
   <% end %>
 </li>
