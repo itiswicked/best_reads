@@ -1,4 +1,14 @@
 <li>
+  <div class= 'voting'>
+    <% unless current_user.id == review.user.id %>
+      <li><%= link_to "Upvote", upvote_review_votes_path(review), class: "upvote", remote: true, method: :post %></li>
+      <div id="vote-<%=review.id%>">
+        <li><%= review.score %></li>
+      </div>
+      <li><%= link_to "Downvote", downvote_review_votes_path(review), class: "downvote", remote: true, method: :post %></li>
+    <% end %>
+  </div>
+
   <% if params[:controller] == "users" %>
     Review for <%= link_to review.book.title, book_path(review.book) %>:<br>
   <% end %>
@@ -7,7 +17,8 @@
   <%= review.body %>
   <% if !(current_user == nil) %>
     <% if review.user == current_user || current_user.admin? %>
-      <%= button_to 'Edit', edit_review_path(review), method: :get %>
-        <%= button_to 'Delete', { controller: "reviews", action: :destroy, id: review.id }, data: { confirm: "Are you sure?" }, method: :delete %>
+      <%= link_to 'Edit', edit_review_path(review), class: 'button small' %>
+      <%= button_to 'Delete', { controller: "reviews", action: :destroy, id: review.id }, data: { confirm: "Are you sure?" }, method: :delete %>
     <% end %>
   <% end %>
+</li>

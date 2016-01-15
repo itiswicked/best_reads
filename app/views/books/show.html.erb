@@ -1,39 +1,41 @@
-<h1>
-  <%= @book.title %>
-</h1>
-<span>
-  By: <%= @book.author.name %>
+<article class='book-show'>
+  <h1>
+    <%= @book.title %>
+  </h1>
+  <% if current_user == @book.user %>
+    <span>Added by <%= link_to 'You', @book.user %></span>
+  <% else %>
+    <span>Added by <%= link_to @book.user.first_name, @book.user %></span>
+  <% end %>
+  <% if !(current_user == nil) %>
+    <% if current_user == @book.user || current_user.admin? %>
+      <%= button_to 'Edit Book', edit_book_path, class: "button tiny" %>
+    <% end%>
+  <% end %>
+  <span>By <%= @book.author.name %></span>
   <br>
-  Genre: <%= @book.genre.genre_name %>
+  <span>Genre: <%= @book.genre.genre_name %></span>
   <br>
-  Published: <%= @book.year %>
-</span>
-
-<p>
-  Synopsis:
+  <span>Published: <%= @book.year %></span>
   <br>
-  <%= @book.description %>
-  <br><br>
-    Added by:<br>
-   <%= button_to @book.user.first_name, @book.user, class: 'button' %>
-  </h5>
-</p>
 
-<% if !(current_user == nil) %>
-  <% if current_user == @book.user || current_user.admin? %>
-    <%= link_to 'Edit Book', edit_book_path %>
-  <% end%>
-<% end %>
+  <br>
+  <h4>Synopsis</h4>
+  <p><%= @book.description %></p>
+  <br>
+</article>
+<article class="review-index">
+  <% if user_signed_in? && !@book.reviewed?(current_user) %>
+    <%= link_to 'Add Review',
+        new_book_review_path(@book),
+        class: "button tiny" %>
+  <% else %>
+    <span>Sign in to add a review!</span>
+  <% end %>
+  <h3>Reviews</h3>
+  <ul>
+    <%= render partial: 'layouts/review', collection: @reviews %>
+  </ul>
 
-<% if user_signed_in? && !@book.reviewed?(current_user) %>
-  <%= button_to "Add Review", new_book_review_path(@book), class: 'button' %>
-<% else %>
-  <span>Sign in to add a review!</span>
-<% end %>
-
-Reviews for <%= @book.title %>:
-<ul>
-  <%= render partial: 'layouts/review', collection: @reviews %>
-</ul>
-
-<%= paginate @reviews %>
+  <%= paginate @reviews %>
+</article>

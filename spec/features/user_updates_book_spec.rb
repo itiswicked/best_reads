@@ -49,7 +49,7 @@ feature "users can add books" do
     click_button "Edit Book"
 
     expect(page).to have_content "The Monk"
-    expect(page).to have_content user.first_name
+    expect(page).to have_content 'You'
   end
 
 end
