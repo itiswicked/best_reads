@@ -33,7 +33,6 @@ feature 'user updates review' do
     expect_fields_autopopulated
     fill_in_and_submit_form
 
-
     expect(page.current_path).to eq "/books/#{users_review.book.id}"
   end
 
@@ -43,7 +42,6 @@ feature 'user updates review' do
     click_button 'Edit'
     expect_fields_autopopulated
     fill_in_and_submit_form
-
 
     expect(page.current_path).to eq "/users/#{users_review.user.id}"
   end

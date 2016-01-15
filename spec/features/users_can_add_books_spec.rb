@@ -11,8 +11,6 @@ feature "users can add books" do
     Genre.create(genre_name: "Satire")
     Genre.create(genre_name: "Tragedy")
     Genre.create(genre_name: "TragiComedy")
-
-
   end
 
   scenario "user adds new book successfully" do
