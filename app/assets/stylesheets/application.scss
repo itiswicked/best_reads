@@ -33,7 +33,7 @@
 }
 
 .dashed {
-   border: 2px dashed gray;
+   border: 2px dashed #D3D3D3;
    height: 93%;
    width: 93%;
 }
@@ -52,21 +52,21 @@
 }
 
 .profile-body {
+  display: block;
   margin: 0 auto;
   width: 80%;
-  display: block;
 }
 
 .profile-body img {
-  width: 150px;
-  height: auto;
   float: left;
+  height: auto;
+  width: 150px;
 }
 
 .profile-text {
   display: block;
-  margin: 0 auto;
   float: none;
+  margin: 0 auto;
 }
 
 .profile-text ul {
@@ -77,7 +77,7 @@
   list-style: none;
 }
 
-.profile-text li span {
+.profile-text span {
   font-weight: bold;
 }
 
