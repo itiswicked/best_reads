@@ -28,7 +28,7 @@ feature 'admin updates or deletes review' do
     expect(page).to have_button('Delete')
     click_button('Edit', match: :first)
     expect_fields_autopopulated
-    fill_in_update_reviews_form
+    fill_in_and_submit_form
 
     expect(page).to have_content users_review.book.title
 
