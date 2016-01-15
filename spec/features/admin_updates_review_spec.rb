@@ -40,7 +40,7 @@ feature 'admin updates or deletes review' do
     expect(page).to have_button('Delete')
     click_button('Delete', match: :first)
 
-    expect(page).to_not have_button('Edit')
-    expect(page).to_not have_button('Delete')
+    expect(page).to have_button('Edit')
+    expect(page).to have_button('Delete')
   end
 end
