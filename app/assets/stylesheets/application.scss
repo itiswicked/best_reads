@@ -16,16 +16,16 @@
  */
 
 .top-bar {
-   margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .name {
-   display: inline;
+  display: inline;
 }
 
 .book {
-  padding: 0;
   height: 240px;
+  padding: 0;
   text-align: center;
   h4 {
     margin-top: 2em;
@@ -33,9 +33,9 @@
 }
 
 .dashed {
-   border: 2px dashed gray;
-   height: 93%;
-   width: 93%;
+  border: 2px dashed #808080;
+  height: 93%;
+  width: 93%;
 }
 
 .book-button {

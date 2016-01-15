@@ -17,6 +17,7 @@ feature 'user views lots of reviews via pagination' do
 # [x] Pagination should be handled by the Kaminari gem
 
   let!(:book) { FactoryGirl.create(:book) }
+  let!(:user) { FactoryGirl.create(:user) }
 
   # Sleep gauarantees created_at timestamps are unique
   21.times do |i|
@@ -27,6 +28,7 @@ feature 'user views lots of reviews via pagination' do
   end
 
   scenario 'scrolls to the bottom and does not see more than 20 reviews' do
+    login_as(user, scope: :user)
     visit book_path(book)
 
     expect(page).to have_content review1.title
@@ -35,6 +37,7 @@ feature 'user views lots of reviews via pagination' do
   end
 
   scenario 'scrolls to the bottom and wants to see more than 20 reviews' do
+    login_as(user, scope: :user)
     visit book_path(book)
     click_link 'Next'
 

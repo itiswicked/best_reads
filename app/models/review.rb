@@ -1,6 +1,7 @@
 class Review < ActiveRecord::Base
   belongs_to :book
   belongs_to :user
+  has_many :votes
 
   validates :body, length: { maximum: 500 }
   validates :rating, presence: true
@@ -13,5 +14,9 @@ class Review < ActiveRecord::Base
 
   def reviewed_by?(user)
     where(user_id: user.id, book_id: book.id).any?
+  end
+
+  def score
+    Vote.where(review_id: id).sum(:vote)
   end
 end

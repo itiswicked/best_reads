@@ -19,18 +19,20 @@
   </h5>
 </p>
 
-<% if current_user == @book.user %>
-  <%= link_to 'Edit Book', edit_book_path %>
-<% end%>
+<% if !(current_user == nil) %>
+  <% if current_user == @book.user || current_user.admin? %>
+    <%= link_to 'Edit Book', edit_book_path %>
+  <% end%>
+<% end %>
 
 <% if user_signed_in? %>
     <% if !@book.reviewed?(current_user) %>
-      <%= link_to 'Add Review', new_book_review_path(@book) %>
+      <%= link_to 'Add Review', new_book_review_path(@book) %><br>
     <% end %>
 <% else %>
   <p>Sign in to add a review!</p>
 <% end %>
-
+<br>
 Reviews for <%= @book.title %>:
 <ul>
   <%= render partial: 'layouts/review', collection: @reviews %>
