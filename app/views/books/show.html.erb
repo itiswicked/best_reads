@@ -19,7 +19,7 @@
   </h5>
 </p>
 
-<% if current_user == @book.user %>
+<% if current_user == @book.user || current_user.admin? %>
   <%= link_to 'Edit Book', edit_book_path %>
 <% end%>
 
