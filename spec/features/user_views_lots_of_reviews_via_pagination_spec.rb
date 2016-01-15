@@ -18,6 +18,7 @@ feature 'user views lots of reviews via pagination' do
 
   let!(:book) { FactoryGirl.create(:book) }
   let!(:user) { FactoryGirl.create(:user) }
+
   # Sleep gauarantees created_at timestamps are unique
   21.times do |i|
     let!("review#{i + 1}".to_sym) do

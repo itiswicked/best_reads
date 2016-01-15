@@ -22,9 +22,11 @@ gem 'fog'
 gem 'fog-aws'
 
 
+
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'mailcatcher'
 end
 
 group :development, :test do

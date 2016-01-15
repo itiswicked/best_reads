@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  get 'vote/create'
 
-  get 'vote/destroy'
-
-  root 'landings#index'
+  root 'books#index'
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
@@ -30,6 +27,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :reviews
 
   resources :users, only: [:show]
 

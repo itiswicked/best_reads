@@ -33,24 +33,7 @@
 <br>
 Reviews for <%= @book.title %>:
 <ul>
-<% @reviews.each do |review|%>
-  <div class= 'voting'>
-    <% unless current_user.id == review.user.id %>
-      <li><%= link_to "Upvote", upvote_review_votes_path(review), class: "upvote", remote: true, method: :post %></li>
-      <div id="vote-<%=review.id%>">
-        <li><%= review.score %></li>
-      </div>
-      <li><%= link_to "Downvote", downvote_review_votes_path(review), class: "downvote", remote: true, method: :post %></li>
-    <% end %>
-  </div>
-  <li>
-    <h3><%= review.title %></h3>
-    <%= review.full_user_name %><br>
-    Rating: <%= review.rating %> <br>
-    <%= review.body %> <br>
-    Reviewed on:  <%= review.created_at.strftime("%B %d, %Y") %>
-  </li><br>
-<% end %>
+  <%= render partial: 'layouts/review', collection: @reviews %>
 </ul>
 
 <%= paginate @reviews %>
