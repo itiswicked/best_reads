@@ -1,5 +1,4 @@
 require 'rails_helper'
-extend UpdateReviewsHelpers
 
 feature 'user updates review' do
   # As a user
@@ -20,6 +19,7 @@ feature 'user updates review' do
   let!(:users_review) { FactoryGirl.create(:review) }
   let!(:other_review) { FactoryGirl.create(:review, book: users_review.book) }
 
+  include UpdateReviewsHelpers
   before(:each) { login_as(users_review.user, scope: :user) }
 
   scenario 'accesses from book\'s show page' do
@@ -30,7 +30,7 @@ feature 'user updates review' do
 
     click_button 'Edit'
     expect_fields_autopopulated
-    fill_in_update_form
+    fill_in_update_reviews_form
 
     expect(page).to have_content users_review.book.title
   end
@@ -40,7 +40,7 @@ feature 'user updates review' do
 
     click_button 'Edit'
     expect_fields_autopopulated
-    fill_in_update_form
+    fill_in_update_reviews_form
 
     expect(page).to have_content "Hello #{users_review.user.first_name}!"
   end

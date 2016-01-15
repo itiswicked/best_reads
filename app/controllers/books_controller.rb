@@ -85,4 +85,10 @@ class BooksController < ApplicationController
   def genres_collection
     Genre.all.map { |genre| [genre.genre_name, genre.id] }
   end
+
+  def authorize_user
+    if !user_signed_in? || !current_user.admin?
+      raise ActionController::RoutingError.new('Not Found')
+    end
+  end
 end
