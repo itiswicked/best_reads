@@ -12,4 +12,41 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
  */
+
+.top-bar {
+  margin-bottom: 30px;
+}
+
+.name {
+  display: inline;
+}
+
+.book {
+  height: 240px;
+  padding: 0;
+  text-align: center;
+  h4 {
+    margin-top: 2em;
+  }
+}
+
+.dashed {
+  border: 2px dashed #808080;
+  height: 93%;
+  width: 93%;
+}
+
+.book-button {
+  font-size: 1em;
+}
+
+.form {
+  margin-left: 10%;
+  margin-right: 20%;
+}
+
+#search-bar {
+  margin-right: 30px;
+}
