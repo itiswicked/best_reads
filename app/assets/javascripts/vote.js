@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $(".upvote").on("click", function(event) {
+  $("body").on("click", ".upvote", function(event) {
     event.preventDefault();
     var urlID = $(this).attr("href");
     var delimeter = "/";
@@ -25,7 +25,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-  $(".downvote").on("click", function(event) {
+  $("body").on("click", ".downvote", function(event) {
     event.preventDefault();
     var urlID = $(this).attr("href");
     var delimeter = "/";
