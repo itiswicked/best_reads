@@ -29,7 +29,7 @@ feature 'user creates book review' do
     click_button 'Add Review'
 
     expect(page).to have_content('Good book I guess')
-    expect(page).to have_content(book.user.first_name)
+    expect(page).to have_content('You')
   end
 
   scenario 'an invalid form is not saved' do

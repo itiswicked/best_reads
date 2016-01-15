@@ -36,7 +36,7 @@ feature "users can add books" do
     expect(page).to have_content "Book added successfully"
     expect(page).to have_content "The Monk"
     click_link "View"
-    expect(page).to have_content user.first_name
+    expect(page).to have_content 'You'
   end
 
   scenario "user does not provide proper information for a book" do
