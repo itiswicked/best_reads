@@ -12,8 +12,6 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'coveralls', require: false
-
-gem 'foundation-rails'
 gem 'kaminari'
 gem 'pg_search'
 

@@ -24,8 +24,8 @@
 }
 
 .book {
-  height: 240px;
   padding: 0;
+  height: 240px;
   text-align: center;
   h4 {
     margin-top: 2em;
@@ -33,7 +33,7 @@
 }
 
 .dashed {
-  border: 2px dashed #808080;
+  border: 2px dashed #D3D3D3;
   height: 93%;
   width: 93%;
 }
@@ -49,4 +49,39 @@
 
 #search-bar {
   margin-right: 30px;
+}
+
+.profile-body {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.profile-body img {
+  float: left;
+  height: auto;
+  width: 150px;
+}
+
+.profile-text {
+  display: block;
+  float: none;
+  margin: 0 auto;
+}
+
+.profile-text ul {
+  display: inline-block;
+}
+
+.profile-text li {
+  list-style: none;
+}
+
+.profile-text span {
+  font-weight: bold;
+}
+
+.profile-reviews {
+  display: inline-block;
+  width: 100%;
 }
