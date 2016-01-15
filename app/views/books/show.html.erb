@@ -19,10 +19,12 @@
   </h5>
 </p>
 
-<% if current_user == @book.user %>
-  <%= link_to 'Edit Book', edit_book_path %>
-<% end%>
-<% binding.pry %>
+<% if !(current_user == nil) %>
+  <% if current_user == @book.user || current_user.admin? %>
+    <%= link_to 'Edit Book', edit_book_path %>
+  <% end%>
+<% end %>
+
 <% if user_signed_in? %>
     <% unless @book.reviewed?(current_user) %>
       <%= link_to 'Add Review', new_book_review_path(@book) %>
