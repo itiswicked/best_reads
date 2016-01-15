@@ -5,6 +5,7 @@ FactoryGirl.define do
     last_name 'Smith'
     password 'password'
     password_confirmation 'password'
+
   end
 
   # Right justification is for padding book titles with zeros.

@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
   def full_user_name
     "#{first_name.capitalize} #{last_name.chars.first.capitalize}"
   end
+
+  def admin?
+    role == "admin"
+  end
 end
