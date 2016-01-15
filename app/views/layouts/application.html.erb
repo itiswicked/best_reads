@@ -12,35 +12,34 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <div class="page-wrapper">
+      <%= render 'shared/navigation' %>
 
-  <%= render 'shared/navigation' %>
+      <div class="row">
+        <% flash.each do |name, msg| %>
+          <% if msg.is_a?(String) %>
+            <%= content_tag :div, msg, class: "alert-box #{name} radius" %>
+          <% end %>
+        <% end %>
+      </div>
 
-  <div class="row">
-    <% flash.each do |name, msg| %>
-      <% if msg.is_a?(String) %>
-        <%= content_tag :div, msg, class: "alert-box #{name} radius" %>
-      <% end %>
-    <% end %>
-  </div>
+        <% if notice %>
+         <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+         <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
 
-    <% if notice %>
-     <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-     <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
+      <div id="search-bar" class="right">
+        <%= form_tag("/search", method: "get") do %>
+        <%= text_field_tag :query,
+            params[:query],
+            placeholder: "Search" %>
+        <%= submit_tag "Search", name: nil, class: "submit" %>
+        <% end %>
+      </div>
 
-
-    <div id="search-bar" class="right">
-      <%= form_tag("/search", method: "get") do %>
-      <%= text_field_tag :query,
-          params[:query],
-          placeholder: "Search" %>
-      <%= submit_tag "Search", name: nil, class: "submit" %>
-      <% end %>
+      <%= yield %>
     </div>
-
-<%= yield %>
-
   </body>
 </html>
