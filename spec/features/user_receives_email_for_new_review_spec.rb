@@ -11,8 +11,6 @@ when somebody posts a review on a book I've submitted
   #    another user posts a review on a book I created
 
   scenario "review a book" do
-    ActionMailer::Base.deliveries.clear
-
     user = FactoryGirl.create(:user)
     genre = FactoryGirl.create(:genre)
     author = FactoryGirl.create(:author)

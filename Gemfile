@@ -26,6 +26,7 @@ gem 'fog-aws'
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'mailcatcher'
 end
 
 group :development, :test do
@@ -37,7 +38,6 @@ group :development, :test do
   gem 'valid_attribute'
   gem 'shoulda-matchers', require: false
   gem "dotenv-rails"
-  gem 'mailcatcher'
 end
 
 group :test do
