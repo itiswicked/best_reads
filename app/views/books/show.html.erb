@@ -33,15 +33,7 @@
 
 Reviews for <%= @book.title %>:
 <ul>
-<% @reviews.each do |review|%>
-  <li>
-    <h3><%= review.title %></h3>
-    <%= review.full_user_name %><br>
-    Rating: <%= review.rating %> <br>
-    <%= review.body %> <br>
-    Reviewed on:  <%= review.created_at.strftime("%B %d, %Y") %>
-  </li>
-<% end %>
+  <%= render partial: 'layouts/review', collection: @reviews %>
 </ul>
 
 <%= paginate @reviews %>

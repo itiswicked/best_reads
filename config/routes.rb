@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'landings#index'
+  root 'books#index'
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create, :destroy]
   end
 
-  resources :reviews, only: [:new, :create, :destroy]
+  resources :reviews
 
   resources :users, only: [:show]
 

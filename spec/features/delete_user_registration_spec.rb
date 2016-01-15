@@ -15,6 +15,7 @@ require 'rails_helper'
 # [x] All books and reviews associated with that user are deleted
 
 feature 'User deletes their existing account', js: true do
+
   scenario 'User visits Edit Account page to delete their account' do
 
     visit '/'
