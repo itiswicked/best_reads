@@ -22,6 +22,7 @@ feature "users can add books" do
     click_button 'Sign In'
 
     visit new_book_path
+
     expect(page).to have_content "New Book Form"
 
     fill_in 'Title', with: "The Monk"
@@ -39,6 +40,15 @@ feature "users can add books" do
   end
 
   scenario "user does not provide proper information for a book" do
+    user = FactoryGirl.create(:user)
+    visit root_path
+    click_link 'Sign In'
+    visit root_path
+    click_link 'Sign In'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign In'
+
     visit new_book_path
 
     click_button "Add Book"

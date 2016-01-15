@@ -19,6 +19,7 @@ feature 'user updates review' do
   let!(:users_review) { FactoryGirl.create(:review) }
   let!(:other_review) { FactoryGirl.create(:review, book: users_review.book) }
 
+  include UpdateReviewsHelpers
   before(:each) { login_as(users_review.user, scope: :user) }
 
   def expect_fields_autopopulated
