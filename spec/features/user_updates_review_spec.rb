@@ -28,8 +28,10 @@ feature 'user updates review' do
 
   def fill_in_form
     fill_in 'Title', with: 'I hated it so much'
-    fill_in 'Review',
-            with: 'So much that flames were coming out the sides of my face'
+    fill_in(
+      'Review',
+      with: 'So much that flames were coming out the sides of my face'
+    )
     select '4', from: 'Rating'
     click_button 'Update Review'
   end
@@ -39,8 +41,6 @@ feature 'user updates review' do
 
     expect(page).to have_content users_review.title
     expect(page).to have_content other_review.title
-
-    users_review_elem = page.find('li', text: users_review.title)
 
     click_button 'Edit'
     expect_fields_autopopulated
