@@ -50,3 +50,40 @@
 #search-bar {
   margin-right: 30px;
 }
+
+.profile-body {
+  margin: 0 auto;
+  width: 80%;
+  display: block;
+}
+
+.profile-body img {
+  width: 150px;
+  height: auto;
+  float: left;
+}
+
+.profile-text {
+  display: block;
+  margin: 0 auto;
+  float: none;
+}
+
+.profile-text ul {
+  display: inline-block;
+}
+
+.profile-text li {
+  list-style: none;
+}
+
+.profile-text li span {
+  font-weight: bold;
+}
+
+
+
+.profile-reviews {
+  display: inline-block;
+  width: 100%;
+}
