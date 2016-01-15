@@ -19,9 +19,11 @@
   </h5>
 </p>
 
-<% if current_user == @book.user %>
-  <%= link_to 'Edit Book', edit_book_path %><br>
-<% end%>
+<% if !(current_user == nil) %>
+  <% if current_user == @book.user || current_user.admin? %>
+    <%= link_to 'Edit Book', edit_book_path %>
+  <% end%>
+<% end %>
 
 <% if user_signed_in? %>
     <% if !@book.reviewed?(current_user) %>

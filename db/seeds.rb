@@ -14,3 +14,7 @@ Genre.create(genre_name: "Romance Novel")
 Genre.create(genre_name: "Satire")
 Genre.create(genre_name: "Tragedy")
 Genre.create(genre_name: "TragiComedy")
+
+User.create(first_name: "J", last_name: "G", email: "jujukoo@gmail.com",
+            password: "password", password_confirmation: "password",
+            role: "admin")
