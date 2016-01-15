@@ -34,5 +34,4 @@ class VotesController < ApplicationController
     @review = Review.find(params[:review_id])
     @value = Vote.find_or_initialize_by(review: @review, user: current_user)
   end
-
 end
