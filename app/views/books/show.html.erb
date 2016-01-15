@@ -18,6 +18,7 @@
    <%= @book.user.first_name %>
   </h5>
 </p>
+
 <% if !(current_user == nil) %>
   <% if current_user == @book.user || current_user.admin? %>
     <%= link_to 'Edit Book', edit_book_path %>
@@ -29,7 +30,7 @@
       <%= link_to 'Add Review', new_book_review_path(@book) %>
     <% end %>
 <% else %>
-  <p> Sign in to add a review! </p>
+  <p>Sign in to add a review!</p>
 <% end %>
 
 Reviews for <%= @book.title %>:
